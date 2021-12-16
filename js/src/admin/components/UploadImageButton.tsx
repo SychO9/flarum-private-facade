@@ -1,6 +1,6 @@
 import app from 'flarum/admin/app';
-import Button, {IButtonAttrs} from 'flarum/common/components/Button';
-import type Mithril from "mithril";
+import Button, { IButtonAttrs } from 'flarum/common/components/Button';
+import type Mithril from 'mithril';
 
 interface IUploadImageButtonAttrs extends IButtonAttrs {
   onclick: () => void;

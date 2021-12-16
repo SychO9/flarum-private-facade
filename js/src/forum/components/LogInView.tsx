@@ -1,9 +1,9 @@
-import Component, {ComponentAttrs} from "flarum/common/Component";
-import LogInModal from "flarum/forum/components/LogInModal";
-import icon from "flarum/common/helpers/icon";
-import Mithril from "mithril";
-import mapChildren from "../utils/mapChildren";
-import {IInternalModalAttrs} from "flarum/common/components/Modal";
+import Component, { ComponentAttrs } from 'flarum/common/Component';
+import LogInModal from 'flarum/forum/components/LogInModal';
+import icon from 'flarum/common/helpers/icon';
+import Mithril from 'mithril';
+import mapChildren from '../utils/mapChildren';
+import { IInternalModalAttrs } from 'flarum/common/components/Modal';
 
 export interface AuthViewAttrs extends ComponentAttrs {
   routeSwitcher: () => Mithril.Vnode<Mithril.Attributes>;

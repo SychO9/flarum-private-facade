@@ -1,11 +1,11 @@
 import app from 'flarum/forum/app';
-import PrivateFacade from "./components/PrivateFacade";
-import HeaderPrimary from "flarum/forum/components/HeaderPrimary";
-import {extend, override} from "flarum/common/extend";
-import HeaderSecondary from "flarum/forum/components/HeaderSecondary";
-import Mithril from "mithril";
-import Navigation from "flarum/common/components/Navigation";
-import LinkButton from "flarum/common/components/LinkButton";
+import PrivateFacade from './components/PrivateFacade';
+import HeaderPrimary from 'flarum/forum/components/HeaderPrimary';
+import { extend, override } from 'flarum/common/extend';
+import HeaderSecondary from 'flarum/forum/components/HeaderSecondary';
+import Mithril from 'mithril';
+import Navigation from 'flarum/common/components/Navigation';
+import LinkButton from 'flarum/common/components/LinkButton';
 
 app.initializers.add('sycho/flarum-private-facade', () => {
   app.routes.login = {
@@ -21,7 +21,7 @@ app.initializers.add('sycho/flarum-private-facade', () => {
   // @ts-ignore
   const isPrivateFacadePage = (): boolean => ['login', 'signup'].includes(app.current.data.routeName);
 
-  override(HeaderSecondary.prototype, "view", (orig, ...args) => {
+  override(HeaderSecondary.prototype, 'view', (orig, ...args) => {
     if (isPrivateFacadePage() && ['show_only_logo', 'hide_secondary_items'].includes(app.forum.attribute('sycho-private-facade.header_layout'))) {
       return null;
     }
@@ -29,7 +29,7 @@ app.initializers.add('sycho/flarum-private-facade', () => {
     return orig(...args);
   });
 
-  override(HeaderPrimary.prototype, "view", (orig, ...args) => {
+  override(HeaderPrimary.prototype, 'view', (orig, ...args) => {
     if (isPrivateFacadePage() && app.forum.attribute('sycho-private-facade.header_layout') === 'show_only_logo') {
       return null;
     }
@@ -44,7 +44,7 @@ app.initializers.add('sycho/flarum-private-facade', () => {
   });
 
   // @ts-ignore
-  override(Navigation.prototype, "getBackButton", (orig, ...args) => {
+  override(Navigation.prototype, 'getBackButton', (orig, ...args) => {
     if (isPrivateFacadePage()) {
       return null;
     }
@@ -53,25 +53,23 @@ app.initializers.add('sycho/flarum-private-facade', () => {
     return orig(...args);
   });
 
-  extend(HeaderSecondary.prototype, "items", (items) => {
+  extend(HeaderSecondary.prototype, 'items', (items) => {
     if (items.has('logIn')) {
-      items.setContent('logIn', (
-        <LinkButton
-          className="Button Button--link"
-          href={app.route('login')}>
+      items.setContent(
+        'logIn',
+        <LinkButton className="Button Button--link" href={app.route('login')}>
           {app.translator.trans('core.forum.header.log_in_link')}
         </LinkButton>
-      ));
+      );
     }
 
     if (items.has('logIn')) {
-      items.setContent('signUp', (
-        <LinkButton
-          className="Button Button--link"
-          href={app.route('signup')}>
+      items.setContent(
+        'signUp',
+        <LinkButton className="Button Button--link" href={app.route('signup')}>
           {app.translator.trans('core.forum.header.sign_up_link')}
         </LinkButton>
-      ));
+      );
     }
   });
 });

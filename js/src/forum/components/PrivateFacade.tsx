@@ -1,13 +1,13 @@
 import app from 'flarum/forum/app';
 import Component from 'flarum/common/Component';
-import LogInView from "./LogInView";
-import DefaultLoginIllustration from "./DefaultLoginIllustration";
-import SignUpView from "./SignUpView";
-import Button from "flarum/common/components/Button";
-import extractText from "flarum/common/utils/extractText";
-import Mithril from "mithril";
-import Page, {IPageAttrs} from "flarum/common/components/Page";
-import classList from "flarum/common/utils/classList";
+import LogInView from './LogInView';
+import DefaultLoginIllustration from './DefaultLoginIllustration';
+import SignUpView from './SignUpView';
+import Button from 'flarum/common/components/Button';
+import extractText from 'flarum/common/utils/extractText';
+import Mithril from 'mithril';
+import Page, { IPageAttrs } from 'flarum/common/components/Page';
+import classList from 'flarum/common/utils/classList';
 
 type SubRoute = 'login' | 'signup';
 type SubRouteDefinition = {
@@ -20,12 +20,12 @@ const routes: () => Record<SubRoute, SubRouteDefinition> = () => ({
   login: {
     label: extractText(app.translator.trans('sycho-private-facade.forum.log_in_label')),
     component: LogInView,
-    next: "signup",
+    next: 'signup',
   },
   signup: {
     label: extractText(app.translator.trans('sycho-private-facade.forum.sign_up_label')),
     component: SignUpView,
-    next: "login",
+    next: 'login',
   },
 });
 
@@ -38,11 +38,11 @@ export default class PrivateFacade<T extends IPageAttrs> extends Page<T> {
 
     this.routes = routes();
     // @ts-ignore
-    this.currentRoute = this.routes[app.current.data.routeName as "login"|"signup"];
+    this.currentRoute = this.routes[app.current.data.routeName as 'login' | 'signup'];
 
     app.setTitle(this.currentRoute.label);
 
-    if (! document.body.classList.contains('body--privateFacade')) {
+    if (!document.body.classList.contains('body--privateFacade')) {
       document.body.classList.add('body--privateFacade');
     }
 
@@ -64,25 +64,31 @@ export default class PrivateFacade<T extends IPageAttrs> extends Page<T> {
               <DefaultLoginIllustration />
             </div>
             <div className="PrivateFacade-AuthView-form">
-              <this.currentRoute.component routeSwitcher={() => (
-                <>
-                  <div className="PrivateFacade-AuthView-separator">
-                    <span class="PrivateFacade-AuthView-separator-label">{app.translator.trans('sycho-private-facade.forum.or_label')}</span>
-                  </div>
-                  <Button
-                    className="Button Button--block PrivateFacade-Button--outline PrivateFacade-Button"
-                    onclick={() => {
-                      if (['login', 'signup'].includes(app.history.getPrevious()?.name) && app.history.getPrevious()?.name === this.currentRoute.next) {
-                        app.history.back();
-                      } else {
-                        app.history.push(this.currentRoute.next, this.routes[this.currentRoute.next].label, app.route(this.currentRoute.next));
-                        m.route.set(app.route(this.currentRoute.next));
-                      }
-                    }}>
-                    {this.routes[this.currentRoute.next].label}
-                  </Button>
-                </>
-              )} />
+              <this.currentRoute.component
+                routeSwitcher={() => (
+                  <>
+                    <div className="PrivateFacade-AuthView-separator">
+                      <span class="PrivateFacade-AuthView-separator-label">{app.translator.trans('sycho-private-facade.forum.or_label')}</span>
+                    </div>
+                    <Button
+                      className="Button Button--block PrivateFacade-Button--outline PrivateFacade-Button"
+                      onclick={() => {
+                        if (
+                          ['login', 'signup'].includes(app.history.getPrevious()?.name) &&
+                          app.history.getPrevious()?.name === this.currentRoute.next
+                        ) {
+                          app.history.back();
+                        } else {
+                          app.history.push(this.currentRoute.next, this.routes[this.currentRoute.next].label, app.route(this.currentRoute.next));
+                          m.route.set(app.route(this.currentRoute.next));
+                        }
+                      }}
+                    >
+                      {this.routes[this.currentRoute.next].label}
+                    </Button>
+                  </>
+                )}
+              />
             </div>
           </div>
         </div>

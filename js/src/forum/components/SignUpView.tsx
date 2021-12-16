@@ -1,10 +1,10 @@
 import app from 'flarum/forum/app';
-import type Mithril from "mithril";
-import Component from "flarum/common/Component";
-import SignUpModal from "flarum/forum/components/SignUpModal";
-import icon from "flarum/common/helpers/icon";
-import { AuthViewAttrs } from "./LogInView";
-import {IInternalModalAttrs} from "flarum/common/components/Modal";
+import type Mithril from 'mithril';
+import Component from 'flarum/common/Component';
+import SignUpModal from 'flarum/forum/components/SignUpModal';
+import icon from 'flarum/common/helpers/icon';
+import { AuthViewAttrs } from './LogInView';
+import { IInternalModalAttrs } from 'flarum/common/components/Modal';
 
 export default class SignUpView extends Component<AuthViewAttrs> {
   view() {
