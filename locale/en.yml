@@ -1,4 +1,5 @@
 sycho-private-facade:
   forum:
-    sign_up_label: => core.ref.sign_up
+    log_in_label: => core.ref.log_in
     or_label: or
+    sign_up_label: => core.ref.sign_up

@@ -16,6 +16,7 @@
 .PrivateFacade {
   .Modal {
     margin: 0;
+    animation: private-facade-appear 0.5s ease-in;
 
     &-header, &-body, &-footer, &-content {
       background-color: transparent;
@@ -130,3 +131,7 @@
   }
 }
 
+@keyframes private-facade-appear {
+  0% { opacity: 0% }
+  100% { opacity: 100% }
+}

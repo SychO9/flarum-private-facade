@@ -314,61 +314,47 @@ var DefaultLoginIllustration = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ "./src/forum/components/LoginView.tsx":
+/***/ "./src/forum/components/LogInView.tsx":
 /*!********************************************!*\
-  !*** ./src/forum/components/LoginView.tsx ***!
+  !*** ./src/forum/components/LogInView.tsx ***!
   \********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LoginView; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LogInView; });
 /* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
-/* harmony import */ var flarum_forum_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/forum/app */ "flarum/forum/app");
-/* harmony import */ var flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_forum_app__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var flarum_common_Component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/common/Component */ "flarum/common/Component");
-/* harmony import */ var flarum_common_Component__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_common_Component__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var flarum_forum_components_LogInModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/forum/components/LogInModal */ "flarum/forum/components/LogInModal");
-/* harmony import */ var flarum_forum_components_LogInModal__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_forum_components_LogInModal__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _DefaultLoginIllustration__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./DefaultLoginIllustration */ "./src/forum/components/DefaultLoginIllustration.tsx");
-/* harmony import */ var flarum_common_helpers_icon__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! flarum/common/helpers/icon */ "flarum/common/helpers/icon");
-/* harmony import */ var flarum_common_helpers_icon__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(flarum_common_helpers_icon__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var flarum_common_components_Button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! flarum/common/components/Button */ "flarum/common/components/Button");
-/* harmony import */ var flarum_common_components_Button__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(flarum_common_components_Button__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var flarum_common_Component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/common/Component */ "flarum/common/Component");
+/* harmony import */ var flarum_common_Component__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_common_Component__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_forum_components_LogInModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/forum/components/LogInModal */ "flarum/forum/components/LogInModal");
+/* harmony import */ var flarum_forum_components_LogInModal__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_forum_components_LogInModal__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var flarum_common_helpers_icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/common/helpers/icon */ "flarum/common/helpers/icon");
+/* harmony import */ var flarum_common_helpers_icon__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_common_helpers_icon__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _utils_mapChildren__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/mapChildren */ "./src/forum/utils/mapChildren.ts");
 
 
 
 
 
 
+var LogInView = /*#__PURE__*/function (_Component) {
+  Object(_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(LogInView, _Component);
 
-
-var LoginView = /*#__PURE__*/function (_Component) {
-  Object(_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(LoginView, _Component);
-
-  function LoginView() {
+  function LogInView() {
     return _Component.apply(this, arguments) || this;
   }
 
-  var _proto = LoginView.prototype;
+  var _proto = LogInView.prototype;
 
   _proto.view = function view() {
-    return m("div", {
-      className: "PrivateFacade-AuthView"
-    }, m("div", {
-      className: "PrivateFacade-AuthView-interface"
-    }, m("h2", {
-      className: "PrivateFacade-AuthView-interface-title"
-    }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('welcomeTitle')), m("p", {
-      className: "PrivateFacade-AuthView-interface-message"
-    }, m.trust(flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('welcomeMessage'))), m(_DefaultLoginIllustration__WEBPACK_IMPORTED_MODULE_4__["default"], null)), m("div", {
-      className: "PrivateFacade-AuthView-form"
-    }, m(CustomLogInModal, null)));
+    return m(CustomLogInModal, {
+      routeSwitcher: this.attrs.routeSwitcher
+    });
   };
 
-  return LoginView;
-}(flarum_common_Component__WEBPACK_IMPORTED_MODULE_2___default.a);
+  return LogInView;
+}(flarum_common_Component__WEBPACK_IMPORTED_MODULE_1___default.a);
 
 
 
@@ -383,7 +369,7 @@ var CustomLogInModal = /*#__PURE__*/function (_LogInModal) {
 
   // @ts-ignore
   _proto2.title = function title() {
-    return [flarum_common_helpers_icon__WEBPACK_IMPORTED_MODULE_5___default()('fas fa-sign-in-alt'), _LogInModal.prototype.title.call(this)];
+    return [flarum_common_helpers_icon__WEBPACK_IMPORTED_MODULE_3___default()('fas fa-sign-in-alt'), _LogInModal.prototype.title.call(this)];
   };
 
   _proto2.view = function view() {
@@ -391,21 +377,7 @@ var CustomLogInModal = /*#__PURE__*/function (_LogInModal) {
 
     var view = _LogInModal.prototype.view.call(this);
 
-    var mapChildren = function mapChildren(item, callback) {
-      var children = item == null ? void 0 : item.children;
-
-      if (children instanceof Array && "map" in children) {
-        item.children = children == null ? void 0 : children.map(callback).map(function (item) {
-          var _ref;
-
-          return ((_ref = (item == null ? void 0 : item.children) || null) == null ? void 0 : _ref.length) && mapChildren(item, callback) || item;
-        });
-      }
-
-      return item;
-    };
-
-    mapChildren(view, function (item) {
+    Object(_utils_mapChildren__WEBPACK_IMPORTED_MODULE_4__["default"])(view, function (item) {
       var _item$attrs, _item$attrs$className;
 
       if (item != null && (_item$attrs = item.attrs) != null && (_item$attrs$className = _item$attrs.className) != null && _item$attrs$className.includes('Modal-header')) {
@@ -421,18 +393,12 @@ var CustomLogInModal = /*#__PURE__*/function (_LogInModal) {
     var view = _LogInModal.prototype.footer.call(this);
 
     delete view[0];
-    view[1] = m('[', null, m("div", {
-      className: "PrivateFacade-AuthView-separator"
-    }, m("span", {
-      "class": "PrivateFacade-AuthView-separator-label"
-    }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.translator.trans('sycho-private-facade.forum.or_label'))), m(flarum_common_components_Button__WEBPACK_IMPORTED_MODULE_6___default.a, {
-      className: "Button Button--block PrivateFacade-Button--outline PrivateFacade-Button"
-    }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.translator.trans('sycho-private-facade.forum.sign_up_label')));
+    view[1] = this.attrs.routeSwitcher();
     return view;
   };
 
   return CustomLogInModal;
-}(flarum_forum_components_LogInModal__WEBPACK_IMPORTED_MODULE_3___default.a);
+}(flarum_forum_components_LogInModal__WEBPACK_IMPORTED_MODULE_2___default.a);
 
 CustomLogInModal.isDismissible = false;
 
@@ -449,34 +415,173 @@ CustomLogInModal.isDismissible = false;
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PrivateFacade; });
 /* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
-/* harmony import */ var flarum_common_Component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/common/Component */ "flarum/common/Component");
-/* harmony import */ var flarum_common_Component__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_common_Component__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _LoginView__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LoginView */ "./src/forum/components/LoginView.tsx");
+/* harmony import */ var flarum_forum_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/forum/app */ "flarum/forum/app");
+/* harmony import */ var flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_forum_app__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_common_Component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/common/Component */ "flarum/common/Component");
+/* harmony import */ var flarum_common_Component__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_common_Component__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _LogInView__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./LogInView */ "./src/forum/components/LogInView.tsx");
+/* harmony import */ var _DefaultLoginIllustration__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./DefaultLoginIllustration */ "./src/forum/components/DefaultLoginIllustration.tsx");
+/* harmony import */ var _SignUpView__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./SignUpView */ "./src/forum/components/SignUpView.tsx");
+/* harmony import */ var flarum_common_components_Button__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! flarum/common/components/Button */ "flarum/common/components/Button");
+/* harmony import */ var flarum_common_components_Button__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(flarum_common_components_Button__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var flarum_common_utils_extractText__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! flarum/common/utils/extractText */ "flarum/common/utils/extractText");
+/* harmony import */ var flarum_common_utils_extractText__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(flarum_common_utils_extractText__WEBPACK_IMPORTED_MODULE_7__);
 
 
 
+
+
+
+
+
+
+var routes = function routes() {
+  return {
+    login: {
+      label: flarum_common_utils_extractText__WEBPACK_IMPORTED_MODULE_7___default()(flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.translator.trans('sycho-private-facade.forum.log_in_label')),
+      component: _LogInView__WEBPACK_IMPORTED_MODULE_3__["default"],
+      next: "signup"
+    },
+    signup: {
+      label: flarum_common_utils_extractText__WEBPACK_IMPORTED_MODULE_7___default()(flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.translator.trans('sycho-private-facade.forum.sign_up_label')),
+      component: _SignUpView__WEBPACK_IMPORTED_MODULE_5__["default"],
+      next: "login"
+    }
+  };
+};
 
 var PrivateFacade = /*#__PURE__*/function (_Component) {
   Object(_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(PrivateFacade, _Component);
 
   function PrivateFacade() {
-    return _Component.apply(this, arguments) || this;
+    var _this;
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _Component.call.apply(_Component, [this].concat(args)) || this;
+    _this.currentRoute = void 0;
+    _this.routes = void 0;
+    return _this;
   }
 
   var _proto = PrivateFacade.prototype;
 
+  _proto.oninit = function oninit(vnode) {
+    _Component.prototype.oninit.call(this, vnode);
+
+    this.routes = routes();
+    this.currentRoute = this.routes[flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.initialRoute.split('/').pop()];
+  };
+
   _proto.view = function view() {
+    var _this2 = this;
+
     return m("div", {
       className: "PrivateFacade"
     }, m("div", {
       className: "PrivateFacade-container container"
-    }, m(_LoginView__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
+    }, m("div", {
+      className: "PrivateFacade-AuthView"
+    }, m("div", {
+      className: "PrivateFacade-AuthView-interface"
+    }, m("h2", {
+      className: "PrivateFacade-AuthView-interface-title"
+    }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('welcomeTitle')), m("p", {
+      className: "PrivateFacade-AuthView-interface-message"
+    }, m.trust(flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('welcomeMessage'))), m(_DefaultLoginIllustration__WEBPACK_IMPORTED_MODULE_4__["default"], null)), m("div", {
+      className: "PrivateFacade-AuthView-form"
+    }, m(this.currentRoute.component, {
+      routeSwitcher: function routeSwitcher() {
+        return m('[', null, m("div", {
+          className: "PrivateFacade-AuthView-separator"
+        }, m("span", {
+          "class": "PrivateFacade-AuthView-separator-label"
+        }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.translator.trans('sycho-private-facade.forum.or_label'))), m(flarum_common_components_Button__WEBPACK_IMPORTED_MODULE_6___default.a, {
+          className: "Button Button--block PrivateFacade-Button--outline PrivateFacade-Button",
+          onclick: function onclick() {
+            _this2.currentRoute = _this2.routes[_this2.currentRoute.next];
+          }
+        }, _this2.routes[_this2.currentRoute.next].label));
+      }
+    })))));
   };
 
   return PrivateFacade;
+}(flarum_common_Component__WEBPACK_IMPORTED_MODULE_2___default.a);
+
+
+
+/***/ }),
+
+/***/ "./src/forum/components/SignUpView.tsx":
+/*!*********************************************!*\
+  !*** ./src/forum/components/SignUpView.tsx ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SignUpView; });
+/* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
+/* harmony import */ var flarum_common_Component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/common/Component */ "flarum/common/Component");
+/* harmony import */ var flarum_common_Component__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_common_Component__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_forum_components_SignUpModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/forum/components/SignUpModal */ "flarum/forum/components/SignUpModal");
+/* harmony import */ var flarum_forum_components_SignUpModal__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_forum_components_SignUpModal__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var flarum_common_helpers_icon__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! flarum/common/helpers/icon */ "flarum/common/helpers/icon");
+/* harmony import */ var flarum_common_helpers_icon__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_common_helpers_icon__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+
+var SignUpView = /*#__PURE__*/function (_Component) {
+  Object(_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(SignUpView, _Component);
+
+  function SignUpView() {
+    return _Component.apply(this, arguments) || this;
+  }
+
+  var _proto = SignUpView.prototype;
+
+  _proto.view = function view() {
+    return m(CustomSignUpModal, {
+      routeSwitcher: this.attrs.routeSwitcher
+    });
+  };
+
+  return SignUpView;
 }(flarum_common_Component__WEBPACK_IMPORTED_MODULE_1___default.a);
 
 
+
+var CustomSignUpModal = /*#__PURE__*/function (_SignUpModal) {
+  Object(_babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(CustomSignUpModal, _SignUpModal);
+
+  function CustomSignUpModal() {
+    return _SignUpModal.apply(this, arguments) || this;
+  }
+
+  var _proto2 = CustomSignUpModal.prototype;
+
+  // @ts-ignore
+  _proto2.title = function title() {
+    return [flarum_common_helpers_icon__WEBPACK_IMPORTED_MODULE_3___default()('fas fa-sign-in-alt'), _SignUpModal.prototype.title.call(this)];
+  };
+
+  _proto2.footer = function footer() {
+    var view = _SignUpModal.prototype.footer.call(this);
+
+    view[0] = this.attrs.routeSwitcher();
+    return view;
+  };
+
+  return CustomSignUpModal;
+}(flarum_forum_components_SignUpModal__WEBPACK_IMPORTED_MODULE_2___default.a);
+
+CustomSignUpModal.isDismissible = false;
 
 /***/ }),
 
@@ -504,6 +609,33 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('sycho/
     component: _components_PrivateFacade__WEBPACK_IMPORTED_MODULE_1__["default"]
   };
 });
+
+/***/ }),
+
+/***/ "./src/forum/utils/mapChildren.ts":
+/*!****************************************!*\
+  !*** ./src/forum/utils/mapChildren.ts ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return mapChildren; });
+function mapChildren(item, callback) {
+  var children = item == null ? void 0 : item.children;
+
+  if (children instanceof Array && "map" in children) {
+    item.children = children == null ? void 0 : children.map(callback).map(function (item) {
+      var _ref;
+
+      return ((_ref = (item == null ? void 0 : item.children) || null) == null ? void 0 : _ref.length) && mapChildren(item, callback) || item;
+    });
+  }
+
+  return item;
+}
+;
 
 /***/ }),
 
@@ -540,6 +672,17 @@ module.exports = flarum.core.compat['common/helpers/icon'];
 
 /***/ }),
 
+/***/ "flarum/common/utils/extractText":
+/*!*****************************************************************!*\
+  !*** external "flarum.core.compat['common/utils/extractText']" ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = flarum.core.compat['common/utils/extractText'];
+
+/***/ }),
+
 /***/ "flarum/forum/app":
 /*!**************************************************!*\
   !*** external "flarum.core.compat['forum/app']" ***!
@@ -559,6 +702,17 @@ module.exports = flarum.core.compat['forum/app'];
 /***/ (function(module, exports) {
 
 module.exports = flarum.core.compat['forum/components/LogInModal'];
+
+/***/ }),
+
+/***/ "flarum/forum/components/SignUpModal":
+/*!*********************************************************************!*\
+  !*** external "flarum.core.compat['forum/components/SignUpModal']" ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = flarum.core.compat['forum/components/SignUpModal'];
 
 /***/ })
 
