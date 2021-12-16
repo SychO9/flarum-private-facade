@@ -153,8 +153,11 @@ function _setPrototypeOf(o, p) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return DefaultLoginIllustration; });
 /* harmony import */ var _babel_runtime_helpers_esm_inheritsLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/esm/inheritsLoose */ "./node_modules/@babel/runtime/helpers/esm/inheritsLoose.js");
-/* harmony import */ var flarum_common_Component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/common/Component */ "flarum/common/Component");
-/* harmony import */ var flarum_common_Component__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_common_Component__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_forum_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! flarum/forum/app */ "flarum/forum/app");
+/* harmony import */ var flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(flarum_forum_app__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var flarum_common_Component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! flarum/common/Component */ "flarum/common/Component");
+/* harmony import */ var flarum_common_Component__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(flarum_common_Component__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 
@@ -168,6 +171,15 @@ var DefaultLoginIllustration = /*#__PURE__*/function (_Component) {
   var _proto = DefaultLoginIllustration.prototype;
 
   _proto.view = function view() {
+    var illustrationUrl = flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('sycho-private-facade.illustration_url');
+
+    if (illustrationUrl) {
+      return m("img", {
+        src: illustrationUrl,
+        alt: ""
+      });
+    }
+
     return m("svg", {
       width: "900",
       height: "600",
@@ -308,7 +320,7 @@ var DefaultLoginIllustration = /*#__PURE__*/function (_Component) {
   };
 
   return DefaultLoginIllustration;
-}(flarum_common_Component__WEBPACK_IMPORTED_MODULE_1___default.a);
+}(flarum_common_Component__WEBPACK_IMPORTED_MODULE_2___default.a);
 
 
 

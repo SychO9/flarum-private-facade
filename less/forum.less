@@ -134,17 +134,32 @@
       align-items: flex-end;
     }
 
+    svg, img {
+      max-height: 50%;
+    }
+
     svg {
       max-width: 100%;
-      max-height: 50%;
 
       [fill="#666AF6"] {
         fill: var(--private-facade--interface-primary-color);
       }
+      [stroke="#666AF6"] {
+        stroke: var(--private-facade--interface-primary-color);
+      }
       [fill="#E1E4E5"] {
         fill: var(--private-facade--interface-control-color);
       }
+      [stroke="#E1E4E5"] {
+        stroke: var(--private-facade--interface-control-color);
+      }
       [fill="#fff"] {
+        fill: var(--private-facade--interface-control-bg);
+      }
+      [stroke="#fff"] {
+        stroke: var(--private-facade--interface-control-bg);
+      }
+      [fill^="url("] {
         fill: var(--private-facade--interface-control-bg);
       }
     }

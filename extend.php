@@ -11,13 +11,20 @@
 
 namespace SychO\PrivateFacade;
 
+use Flarum\Api\Serializer\ForumSerializer;
 use Flarum\Extend;
 use Flarum\Frontend\Document;
 use Flarum\Http\RequestUtil;
 use Flarum\User\Exception\PermissionDeniedException;
 use Psr\Http\Message\ServerRequestInterface;
+use SychO\PrivateFacade\Api\Controller\DeleteIllustrationController;
+use SychO\PrivateFacade\Api\Controller\UploadIllustrationController;
 
 return [
+    (new Extend\Routes('api'))
+        ->post('/private_facade_illustration', 'afrux-theme-base.banner.upload', UploadIllustrationController::class)
+        ->delete('/private_facade_illustration', 'afrux-theme-base.banner.remove', DeleteIllustrationController::class),
+
     (new Extend\Frontend('forum'))
         ->js(__DIR__.'/js/dist/forum.js')
         ->css(__DIR__.'/less/forum.less')
@@ -49,6 +56,7 @@ return [
         ->default('sycho-private-facade.header_layout', 'show_only_logo')
         ->default('sycho-private-facade.primary_color_bg', true)
         ->default('sycho-private-facade.force_redirect', true)
+        ->serializeToForum('sycho-private-facade.illustration_url', 'sycho-private-facade.illustration_path', ExposeIllustration::class)
         ->serializeToForum('sycho-private-facade.header_layout', 'sycho-private-facade.header_layout')
         ->serializeToForum('sycho-private-facade.primary_color_bg', 'sycho-private-facade.primary_color_bg', 'boolval'),
 
