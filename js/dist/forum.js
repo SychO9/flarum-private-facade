@@ -480,6 +480,7 @@ var PrivateFacade = /*#__PURE__*/function (_Page) {
     this.routes = routes(); // @ts-ignore
 
     this.currentRoute = this.routes[flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.current.data.routeName];
+    flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.setTitle(this.currentRoute.label);
     this.bodyClass = flarum_common_utils_classList__WEBPACK_IMPORTED_MODULE_8___default()({
       'App--privateFacade': true,
       'App--privateFacade--logoOnly': ['show_only_logo', 'hide_secondary_items'].includes(flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('sycho-private-facade.header_layout')),
@@ -514,9 +515,14 @@ var PrivateFacade = /*#__PURE__*/function (_Page) {
         }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.translator.trans('sycho-private-facade.forum.or_label'))), m(flarum_common_components_Button__WEBPACK_IMPORTED_MODULE_5___default.a, {
           className: "Button Button--block PrivateFacade-Button--outline PrivateFacade-Button",
           onclick: function onclick() {
-            var nextRoute = _this2.routes[_this2.currentRoute.next];
-            flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.history.push(_this2.currentRoute.next, nextRoute.label);
-            _this2.currentRoute = nextRoute;
+            var _app$history$getPrevi, _app$history$getPrevi2;
+
+            if (['login', 'signup'].includes((_app$history$getPrevi = flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.history.getPrevious()) == null ? void 0 : _app$history$getPrevi.name) && ((_app$history$getPrevi2 = flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.history.getPrevious()) == null ? void 0 : _app$history$getPrevi2.name) === _this2.currentRoute.next) {
+              flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.history.back();
+            } else {
+              flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.history.push(_this2.currentRoute.next, _this2.routes[_this2.currentRoute.next].label, flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.route(_this2.currentRoute.next));
+              m.route.set(flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.route(_this2.currentRoute.next));
+            }
           }
         }, _this2.routes[_this2.currentRoute.next].label));
       }
@@ -621,6 +627,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var flarum_common_extend__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(flarum_common_extend__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var flarum_forum_components_HeaderSecondary__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! flarum/forum/components/HeaderSecondary */ "flarum/forum/components/HeaderSecondary");
 /* harmony import */ var flarum_forum_components_HeaderSecondary__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(flarum_forum_components_HeaderSecondary__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var flarum_common_components_Navigation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! flarum/common/components/Navigation */ "flarum/common/components/Navigation");
+/* harmony import */ var flarum_common_components_Navigation__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(flarum_common_components_Navigation__WEBPACK_IMPORTED_MODULE_5__);
+
 
 
 
@@ -667,6 +676,19 @@ flarum_forum_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('sycho/
     }
 
     return original;
+  }); // @ts-ignore
+
+  Object(flarum_common_extend__WEBPACK_IMPORTED_MODULE_3__["override"])(flarum_common_components_Navigation__WEBPACK_IMPORTED_MODULE_5___default.a.prototype, "getBackButton", function (orig) {
+    if (isPrivateFacadePage()) {
+      return null;
+    } // @ts-ignore
+
+
+    for (var _len3 = arguments.length, args = new Array(_len3 > 1 ? _len3 - 1 : 0), _key3 = 1; _key3 < _len3; _key3++) {
+      args[_key3 - 1] = arguments[_key3];
+    }
+
+    return orig.apply(void 0, args);
   });
 });
 
@@ -718,6 +740,17 @@ module.exports = flarum.core.compat['common/Component'];
 /***/ (function(module, exports) {
 
 module.exports = flarum.core.compat['common/components/Button'];
+
+/***/ }),
+
+/***/ "flarum/common/components/Navigation":
+/*!*********************************************************************!*\
+  !*** external "flarum.core.compat['common/components/Navigation']" ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = flarum.core.compat['common/components/Navigation'];
 
 /***/ }),
 

@@ -4,6 +4,7 @@ import HeaderPrimary from "flarum/forum/components/HeaderPrimary";
 import {override} from "flarum/common/extend";
 import HeaderSecondary from "flarum/forum/components/HeaderSecondary";
 import Mithril from "mithril";
+import Navigation from "flarum/common/components/Navigation";
 
 app.initializers.add('sycho/flarum-private-facade', () => {
   app.routes.login = {
@@ -39,5 +40,15 @@ app.initializers.add('sycho/flarum-private-facade', () => {
     }
 
     return original;
+  });
+
+  // @ts-ignore
+  override(Navigation.prototype, "getBackButton", (orig, ...args) => {
+    if (isPrivateFacadePage()) {
+      return null;
+    }
+
+    // @ts-ignore
+    return orig(...args);
   });
 });

@@ -40,6 +40,8 @@ export default class PrivateFacade<T extends IPageAttrs> extends Page<T> {
     // @ts-ignore
     this.currentRoute = this.routes[app.current.data.routeName as "login"|"signup"];
 
+    app.setTitle(this.currentRoute.label);
+
     this.bodyClass = classList({
       'App--privateFacade': true,
       'App--privateFacade--logoOnly': ['show_only_logo', 'hide_secondary_items'].includes(app.forum.attribute('sycho-private-facade.header_layout')),
@@ -66,9 +68,12 @@ export default class PrivateFacade<T extends IPageAttrs> extends Page<T> {
                   <Button
                     className="Button Button--block PrivateFacade-Button--outline PrivateFacade-Button"
                     onclick={() => {
-                      const nextRoute = this.routes[this.currentRoute.next];
-                      app.history.push(this.currentRoute.next, nextRoute.label);
-                      this.currentRoute = nextRoute;
+                      if (['login', 'signup'].includes(app.history.getPrevious()?.name) && app.history.getPrevious()?.name === this.currentRoute.next) {
+                        app.history.back();
+                      } else {
+                        app.history.push(this.currentRoute.next, this.routes[this.currentRoute.next].label, app.route(this.currentRoute.next));
+                        m.route.set(app.route(this.currentRoute.next));
+                      }
                     }}>
                     {this.routes[this.currentRoute.next].label}
                   </Button>
