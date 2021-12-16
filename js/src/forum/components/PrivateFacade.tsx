@@ -42,6 +42,10 @@ export default class PrivateFacade<T extends IPageAttrs> extends Page<T> {
 
     app.setTitle(this.currentRoute.label);
 
+    if (! document.body.classList.contains('body--privateFacade')) {
+      document.body.classList.add('body--privateFacade');
+    }
+
     this.bodyClass = classList({
       'App--privateFacade': true,
       'App--privateFacade--logoOnly': ['show_only_logo', 'hide_secondary_items'].includes(app.forum.attribute('sycho-private-facade.header_layout')),

@@ -493,6 +493,11 @@ var PrivateFacade = /*#__PURE__*/function (_Page) {
 
     this.currentRoute = this.routes[flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.current.data.routeName];
     flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.setTitle(this.currentRoute.label);
+
+    if (!document.body.classList.contains('body--privateFacade')) {
+      document.body.classList.add('body--privateFacade');
+    }
+
     this.bodyClass = flarum_common_utils_classList__WEBPACK_IMPORTED_MODULE_8___default()({
       'App--privateFacade': true,
       'App--privateFacade--logoOnly': ['show_only_logo', 'hide_secondary_items'].includes(flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('sycho-private-facade.header_layout')),
