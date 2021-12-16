@@ -1,10 +1,11 @@
 import app from 'flarum/forum/app';
 import PrivateFacade from "./components/PrivateFacade";
 import HeaderPrimary from "flarum/forum/components/HeaderPrimary";
-import {override} from "flarum/common/extend";
+import {extend, override} from "flarum/common/extend";
 import HeaderSecondary from "flarum/forum/components/HeaderSecondary";
 import Mithril from "mithril";
 import Navigation from "flarum/common/components/Navigation";
+import LinkButton from "flarum/common/components/LinkButton";
 
 app.initializers.add('sycho/flarum-private-facade', () => {
   app.routes.login = {
@@ -50,5 +51,27 @@ app.initializers.add('sycho/flarum-private-facade', () => {
 
     // @ts-ignore
     return orig(...args);
+  });
+
+  extend(HeaderSecondary.prototype, "items", (items) => {
+    if (items.has('logIn')) {
+      items.setContent('logIn', (
+        <LinkButton
+          className="Button Button--link"
+          href={app.route('login')}>
+          {app.translator.trans('core.forum.header.log_in_link')}
+        </LinkButton>
+      ));
+    }
+
+    if (items.has('logIn')) {
+      items.setContent('signUp', (
+        <LinkButton
+          className="Button Button--link"
+          href={app.route('signup')}>
+          {app.translator.trans('core.forum.header.sign_up_link')}
+        </LinkButton>
+      ));
+    }
   });
 });
