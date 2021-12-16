@@ -17,7 +17,7 @@ class CustomSignUpModal extends SignUpModal<AuthViewAttrs & IInternalModalAttrs>
 
   // @ts-ignore
   title(): Mithril.Children {
-    return [icon('fas fa-sign-in-alt'), super.title()];
+    return [icon('fas fa-user-plus'), super.title()];
   }
 
   footer() {

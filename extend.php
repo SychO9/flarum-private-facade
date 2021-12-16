@@ -35,4 +35,8 @@ return [
 
     (new Extend\View())
         ->namespace('sycho-private-facade', __DIR__.'/views'),
+
+    (new Extend\Settings())
+        ->default('sycho-private-facade.header_layout', 'show_only_logo')
+        ->serializeToForum('sycho-private-facade.header_layout', 'sycho-private-facade.header_layout'),
 ];

@@ -7,6 +7,17 @@
   margin: 0;
   padding-bottom: 0;
   background-color: var(--control-bg-light);
+
+  &--logoOnly {
+    @media @tablet-up {
+      .App-header {
+        background-color: transparent;
+      }
+      .App-content {
+        border-top: none;
+      }
+    }
+  }
 }
 
 .App-content, #content, .PrivateFacade, .PrivateFacade-container {

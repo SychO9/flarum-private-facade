@@ -1,6 +1,6 @@
 {!! $forum['headerHtml'] !!}
 
-<div id="app" class="App App--privateFacade">
+<div id="app" class="App App--privateFacade @if(in_array($settings->get('sycho-private-facade.header_layout'), ['show_only_logo', 'hide_secondary_items'], true)) App--privateFacade--logoOnly @endif">
 
     <div id="app-navigation" class="App-navigation"></div>
 

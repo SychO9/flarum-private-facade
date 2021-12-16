@@ -1,4 +1,13 @@
 sycho-private-facade:
+  admin:
+    settings:
+      header_layout:
+        options:
+          show_header: Show Header
+          show_only_logo: Show Logo Ony
+          hide_secondary_items: Hide Secondary Items (Search, Login and Signup links)
+        title: Header Layout
+
   forum:
     log_in_label: => core.ref.log_in
     or_label: or

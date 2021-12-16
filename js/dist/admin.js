@@ -91,28 +91,52 @@ module.exports =
 /*!******************!*\
   !*** ./admin.js ***!
   \******************/
-/*! no static exports found */
+/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _src_admin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/admin */ "./src/admin/index.js");
-/* harmony import */ var _src_admin__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_src_admin__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _src_admin__WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _src_admin__WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-
+/* harmony import */ var _src_admin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./src/admin */ "./src/admin/index.tsx");
+/* empty/unused harmony star reexport */
 
 /***/ }),
 
-/***/ "./src/admin/index.js":
-/*!****************************!*\
-  !*** ./src/admin/index.js ***!
-  \****************************/
+/***/ "./src/admin/index.tsx":
+/*!*****************************!*\
+  !*** ./src/admin/index.tsx ***!
+  \*****************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var flarum_admin_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! flarum/admin/app */ "flarum/admin/app");
+/* harmony import */ var flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(flarum_admin_app__WEBPACK_IMPORTED_MODULE_0__);
+
+flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('sycho/flarum-private-facade', function (app) {
+  app.extensionData["for"]('sycho-private-facade').registerSetting({
+    setting: 'sycho-private-facade.header_layout',
+    label: app.translator.trans('sycho-private-facade.admin.settings.header_layout.title'),
+    "default": 'show_only_logo',
+    options: {
+      'show_header': app.translator.trans('sycho-private-facade.admin.settings.header_layout.options.show_header'),
+      'show_only_logo': app.translator.trans('sycho-private-facade.admin.settings.header_layout.options.show_only_logo'),
+      'hide_secndary_items': app.translator.trans('sycho-private-facade.admin.settings.header_layout.options.hide_secondary_items')
+    },
+    type: "select"
+  });
+});
+
+/***/ }),
+
+/***/ "flarum/admin/app":
+/*!**************************************************!*\
+  !*** external "flarum.core.compat['admin/app']" ***!
+  \**************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-app.initializers.add('sycho/flarum-private-facade', function () {
-  console.log('[sycho/flarum-private-facade] Hello, admin!');
-});
+module.exports = flarum.core.compat['admin/app'];
 
 /***/ })
 
