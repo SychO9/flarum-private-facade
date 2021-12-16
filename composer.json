@@ -1,6 +1,6 @@
 {
     "name": "sycho/flarum-private-facade",
-    "description": "Show Login/Register Home Pages",
+    "description": "Force guests to an interface with only login and signup forms",
     "keywords": [
         "flarum"
     ],
@@ -19,6 +19,11 @@
             "role": "Developer"
         }
     ],
+    "support": {
+        "email": "ilyasmazouz@gmail.com",
+        "forum": "https://discuss.flarum.org/"
+    },
+    "homepage": "https://sycho9.github.io",
     "autoload": {
         "psr-4": {
             "SychO\\PrivateFacade\\": "src/"
