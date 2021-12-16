@@ -121,7 +121,7 @@ flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('sycho/
     options: {
       'show_header': app.translator.trans('sycho-private-facade.admin.settings.header_layout.options.show_header'),
       'show_only_logo': app.translator.trans('sycho-private-facade.admin.settings.header_layout.options.show_only_logo'),
-      'hide_secndary_items': app.translator.trans('sycho-private-facade.admin.settings.header_layout.options.hide_secondary_items')
+      'hide_secondary_items': app.translator.trans('sycho-private-facade.admin.settings.header_layout.options.hide_secondary_items')
     },
     type: "select"
   }).registerSetting({

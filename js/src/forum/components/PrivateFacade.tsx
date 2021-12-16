@@ -6,6 +6,8 @@ import SignUpView from "./SignUpView";
 import Button from "flarum/common/components/Button";
 import extractText from "flarum/common/utils/extractText";
 import Mithril from "mithril";
+import Page, {IPageAttrs} from "flarum/common/components/Page";
+import classList from "flarum/common/utils/classList";
 
 type SubRoute = 'login' | 'signup';
 type SubRouteDefinition = {
@@ -27,7 +29,7 @@ const routes: () => Record<SubRoute, SubRouteDefinition> = () => ({
   },
 });
 
-export default class PrivateFacade<T> extends Component<T> {
+export default class PrivateFacade<T extends IPageAttrs> extends Page<T> {
   currentRoute!: SubRouteDefinition;
   routes!: Record<string, SubRouteDefinition>;
 
@@ -35,7 +37,14 @@ export default class PrivateFacade<T> extends Component<T> {
     super.oninit(vnode);
 
     this.routes = routes();
-    this.currentRoute = this.routes[app.initialRoute.split('/').pop() as "login"|"signup"];
+    // @ts-ignore
+    this.currentRoute = this.routes[app.current.data.routeName as "login"|"signup"];
+
+    this.bodyClass = classList({
+      'App--privateFacade': true,
+      'App--privateFacade--logoOnly': ['show_only_logo', 'hide_secondary_items'].includes(app.forum.attribute('sycho-private-facade.header_layout')),
+      'App--privateFacade--primaryBg': app.forum.attribute('sycho-private-facade.primary_color_bg'),
+    });
   }
 
   view() {
