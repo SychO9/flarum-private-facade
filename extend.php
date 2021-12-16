@@ -13,6 +13,8 @@ namespace SychO\PrivateFacade;
 
 use Flarum\Extend;
 use Flarum\Frontend\Document;
+use Flarum\Http\RequestUtil;
+use Flarum\User\Exception\PermissionDeniedException;
 use Psr\Http\Message\ServerRequestInterface;
 
 return [
@@ -22,7 +24,14 @@ return [
         ->route('/login', 'sycho-private-facade.login', PrivateFacade::class)
         ->route('/signup', 'sycho-private-facade.signup', PrivateFacade::class)
         ->content(function (Document $document, ServerRequestInterface $request) {
-            if (in_array($request->getUri()->getPath(), ['/login', '/signup'], true)) {
+            $routeName = $request->getAttribute('routeName');
+            $actor = RequestUtil::getActor($request);
+
+            if ($routeName === 'index' && $actor->isGuest()) {
+                throw new PermissionDeniedException();
+            }
+
+            if (in_array($routeName, ['sycho-private-facade.login', 'sycho-private-facade.signup'], true)) {
                 $document->layoutView = "sycho-private-facade::frontend.forum";
             }
         }),
@@ -39,6 +48,10 @@ return [
     (new Extend\Settings())
         ->default('sycho-private-facade.header_layout', 'show_only_logo')
         ->default('sycho-private-facade.primary_color_bg', true)
+        ->default('sycho-private-facade.force_redirect', true)
         ->serializeToForum('sycho-private-facade.header_layout', 'sycho-private-facade.header_layout')
         ->serializeToForum('sycho-private-facade.primary_color_bg', 'sycho-private-facade.primary_color_bg', 'boolval'),
+
+    (new Extend\Middleware('forum'))
+        ->add(PrivateFacadeMiddleware::class),
 ];
