@@ -11,7 +11,7 @@ export interface AuthViewAttrs extends ComponentAttrs {
 
 export default class LogInView extends Component<AuthViewAttrs> {
   view() {
-    return <CustomLogInModal routeSwitcher={this.attrs.routeSwitcher} />;
+    return <CustomLogInModal routeSwitcher={this.attrs.routeSwitcher} animateShow={() => null} />;
   }
 }
 

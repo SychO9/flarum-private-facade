@@ -1,5 +1,19 @@
 :root {
-  --private-face--control-bg-dark: darken(@control-bg, 14);
+  --private-facade--interface-primary-color: var(--primary-color);
+  --private-facade--interface-control-bg: var(--control-bg);
+  --private-facade--interface-control-bg-dark: darken(@control-bg, 14);
+  --private-facade--interface-bg-color: transparent;
+  --private-facade--interface-control-color: var(--control-color);
+  --private-facade--interface-control-bg-shaded: var(--control-bg-shaded);
+  --private-facade--interface-control-bg-light: var(--control-bg-light);
+}
+
+[data-primary-background] {
+  .light-contents-vars(@primary-color, mix(#000, @primary-color, 10%), mix(@body-bg, @primary-color, 60%), 'private-facade--interface');
+  --private-facade--interface-bg-color: var(--primary-color);
+  --private-facade--interface-color: var(--body-bg);
+  --private-facade--interface-primary-color: var(--body-bg);
+  --link-color: var(--body-bg);
 }
 
 .App--privateFacade {
@@ -15,6 +29,14 @@
       }
       .App-content {
         border-top: none;
+      }
+    }
+  }
+
+  &--primaryBg {
+    @media @tablet-up {
+      .Header-title {
+        float: right;
       }
     }
   }
@@ -79,13 +101,31 @@
     }
 
     &-interface {
+      color: var(--private-facade--interface-color);
+
       &-title {
         font-size: 2rem;
         margin-bottom: 0.8rem;
       }
 
       &-message {
-        color: var(--control-color);
+        color: var(--private-facade--interface-control-color);
+      }
+
+      @media @tablet-up {
+        position: relative;
+        z-index: 0;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: calc(~"0px - var(--header-height)");
+          right: -4rem;
+          width: 100vw;
+          height: calc(~"100% + var(--header-height)");
+          background: var(--private-facade--interface-bg-color);
+          z-index: -1;
+        }
       }
     }
 
@@ -98,13 +138,13 @@
       max-height: 50%;
 
       [fill="#666AF6"] {
-        fill: var(--primary-color);
+        fill: var(--private-facade--interface-primary-color);
       }
       [fill="#E1E4E5"] {
-        fill: var(--private-face--control-bg-dark);
+        fill: var(--private-facade--interface-control-color);
       }
       [fill="#fff"] {
-        fill: var(--control-bg);
+        fill: var(--private-facade--interface-control-bg);
       }
     }
 
@@ -118,12 +158,12 @@
         left: 0;
         right: 0;
         height: 1px;
-        background: var(--control-bg-shaded);
+        background: var(--private-facade--interface-control-bg-shaded);
         top: 50%;
       }
 
       &-label {
-        background-color: var(--control-bg-light);
+        background-color: var(--private-facade--interface-control-bg-light);
         position: relative;
         padding: 0 8px;
         text-transform: uppercase;
@@ -135,14 +175,10 @@
 
   &-Button {
     height: 50px;
-
-    &--outline {
-
-    }
   }
 }
 
 @keyframes private-facade-appear {
-  0% { opacity: 0% }
+  0% { opacity: 0 }
   100% { opacity: 100% }
 }

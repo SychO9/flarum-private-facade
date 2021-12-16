@@ -7,6 +7,7 @@ sycho-private-facade:
           show_only_logo: Show Logo Ony
           hide_secondary_items: Hide Secondary Items (Search, Login and Signup links)
         title: Header Layout
+      primary_color_bg: Use a Primary Color Background
 
   forum:
     log_in_label: => core.ref.log_in

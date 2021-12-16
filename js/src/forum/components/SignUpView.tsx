@@ -8,7 +8,7 @@ import {IInternalModalAttrs} from "flarum/common/components/Modal";
 
 export default class SignUpView extends Component<AuthViewAttrs> {
   view() {
-    return <CustomSignUpModal routeSwitcher={this.attrs.routeSwitcher} />;
+    return <CustomSignUpModal routeSwitcher={this.attrs.routeSwitcher} animateShow={() => null} />;
   }
 }
 

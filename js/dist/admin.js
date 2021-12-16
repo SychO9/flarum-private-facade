@@ -124,6 +124,11 @@ flarum_admin_app__WEBPACK_IMPORTED_MODULE_0___default.a.initializers.add('sycho/
       'hide_secndary_items': app.translator.trans('sycho-private-facade.admin.settings.header_layout.options.hide_secondary_items')
     },
     type: "select"
+  }).registerSetting({
+    setting: 'sycho-private-facade.primary_color_bg',
+    label: app.translator.trans('sycho-private-facade.admin.settings.primary_color_bg'),
+    "default": true,
+    type: "boolean"
   });
 });
 

@@ -38,5 +38,7 @@ return [
 
     (new Extend\Settings())
         ->default('sycho-private-facade.header_layout', 'show_only_logo')
-        ->serializeToForum('sycho-private-facade.header_layout', 'sycho-private-facade.header_layout'),
+        ->default('sycho-private-facade.primary_color_bg', true)
+        ->serializeToForum('sycho-private-facade.header_layout', 'sycho-private-facade.header_layout')
+        ->serializeToForum('sycho-private-facade.primary_color_bg', 'sycho-private-facade.primary_color_bg', 'boolval'),
 ];

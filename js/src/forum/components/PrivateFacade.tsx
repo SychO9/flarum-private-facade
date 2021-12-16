@@ -43,7 +43,7 @@ export default class PrivateFacade<T> extends Component<T> {
       <div className="PrivateFacade">
         <div className="PrivateFacade-container container">
           <div className="PrivateFacade-AuthView">
-            <div className="PrivateFacade-AuthView-interface">
+            <div className="PrivateFacade-AuthView-interface" data-primary-background={app.forum.attribute('sycho-private-facade.primary_color_bg')}>
               <h2 className="PrivateFacade-AuthView-interface-title">{app.forum.attribute('welcomeTitle')}</h2>
               <p className="PrivateFacade-AuthView-interface-message">{m.trust(app.forum.attribute('welcomeMessage'))}</p>
               <DefaultLoginIllustration />
@@ -57,7 +57,9 @@ export default class PrivateFacade<T> extends Component<T> {
                   <Button
                     className="Button Button--block PrivateFacade-Button--outline PrivateFacade-Button"
                     onclick={() => {
-                      this.currentRoute = this.routes[this.currentRoute.next];
+                      const nextRoute = this.routes[this.currentRoute.next];
+                      app.history.push(this.currentRoute.next, nextRoute.label);
+                      this.currentRoute = nextRoute;
                     }}>
                     {this.routes[this.currentRoute.next].label}
                   </Button>

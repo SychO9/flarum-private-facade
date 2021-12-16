@@ -349,7 +349,10 @@ var LogInView = /*#__PURE__*/function (_Component) {
 
   _proto.view = function view() {
     return m(CustomLogInModal, {
-      routeSwitcher: this.attrs.routeSwitcher
+      routeSwitcher: this.attrs.routeSwitcher,
+      animateShow: function animateShow() {
+        return null;
+      }
     });
   };
 
@@ -485,7 +488,8 @@ var PrivateFacade = /*#__PURE__*/function (_Component) {
     }, m("div", {
       className: "PrivateFacade-AuthView"
     }, m("div", {
-      className: "PrivateFacade-AuthView-interface"
+      className: "PrivateFacade-AuthView-interface",
+      "data-primary-background": flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('sycho-private-facade.primary_color_bg')
     }, m("h2", {
       className: "PrivateFacade-AuthView-interface-title"
     }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.forum.attribute('welcomeTitle')), m("p", {
@@ -501,7 +505,9 @@ var PrivateFacade = /*#__PURE__*/function (_Component) {
         }, flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.translator.trans('sycho-private-facade.forum.or_label'))), m(flarum_common_components_Button__WEBPACK_IMPORTED_MODULE_6___default.a, {
           className: "Button Button--block PrivateFacade-Button--outline PrivateFacade-Button",
           onclick: function onclick() {
-            _this2.currentRoute = _this2.routes[_this2.currentRoute.next];
+            var nextRoute = _this2.routes[_this2.currentRoute.next];
+            flarum_forum_app__WEBPACK_IMPORTED_MODULE_1___default.a.history.push(_this2.currentRoute.next, nextRoute.label);
+            _this2.currentRoute = nextRoute;
           }
         }, _this2.routes[_this2.currentRoute.next].label));
       }
@@ -548,7 +554,10 @@ var SignUpView = /*#__PURE__*/function (_Component) {
 
   _proto.view = function view() {
     return m(CustomSignUpModal, {
-      routeSwitcher: this.attrs.routeSwitcher
+      routeSwitcher: this.attrs.routeSwitcher,
+      animateShow: function animateShow() {
+        return null;
+      }
     });
   };
 
