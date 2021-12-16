@@ -2,7 +2,7 @@
     "name": "sycho/flarum-private-facade",
     "description": "Force guests to an interface with only login and signup forms",
     "keywords": [
-        "flarum"
+        "flarum", "private", "login", "signup", "page"
     ],
     "type": "flarum-extension",
     "license": "proprietary",
