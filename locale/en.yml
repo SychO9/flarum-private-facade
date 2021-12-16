@@ -1,0 +1,4 @@
+sycho-private-facade:
+  forum:
+    sign_up_label: => core.ref.sign_up
+    or_label: or

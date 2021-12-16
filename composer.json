@@ -1,0 +1,58 @@
+{
+    "name": "sycho/flarum-private-facade",
+    "description": "Show Login/Register Home Pages",
+    "keywords": [
+        "flarum"
+    ],
+    "type": "flarum-extension",
+    "license": "0BSD",
+    "require": {
+        "flarum/core": "^1.0.0"
+    },
+    "require-dev": {
+        "flarum/testing": "^1.0.0"
+    },
+    "authors": [
+        {
+            "name": "Sami Mazouz",
+            "email": "ilyasmazouz@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "SychO\\PrivateFacade\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SychO\\PrivateFacade\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "flarum-extension": {
+            "title": "Private Facade",
+            "category": "",
+            "icon": {
+                "name": "",
+                "backgroundColor": "",
+                "color": ""
+            }
+        }
+    },
+    "scripts": {
+        "test": [
+            "@test:unit",
+            "@test:integration"
+        ],
+        "test:unit": "phpunit -c tests/phpunit.unit.xml",
+        "test:integration": "phpunit -c tests/phpunit.integration.xml",
+        "test:setup": "@php tests/integration/setup.php"
+    },
+    "scripts-descriptions": {
+        "test": "Runs all tests.",
+        "test:unit": "Runs all unit tests.",
+        "test:integration": "Runs all integration tests.",
+        "test:setup": "Sets up a database for use with integration tests. Execute this only once."
+    }
+}
