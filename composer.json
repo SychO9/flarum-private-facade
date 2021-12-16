@@ -5,7 +5,7 @@
         "flarum"
     ],
     "type": "flarum-extension",
-    "license": "0BSD",
+    "license": "proprietary",
     "require": {
         "flarum/core": "^1.0.0"
     },
@@ -32,11 +32,11 @@
     "extra": {
         "flarum-extension": {
             "title": "Private Facade",
-            "category": "",
+            "category": "feature",
             "icon": {
-                "name": "",
-                "backgroundColor": "",
-                "color": ""
+                "name": "fas fa-user-lock",
+                "backgroundColor": "#2c5ba7",
+                "color": "#fff"
             }
         }
     },
