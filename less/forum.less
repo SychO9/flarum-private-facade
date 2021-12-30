@@ -133,6 +133,12 @@
         color: var(--private-facade--interface-control-color);
       }
 
+      &-title, &-message {
+        &:empty {
+          display: none;
+        }
+      }
+
       &::before {
         content: "";
         position: absolute;

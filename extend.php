@@ -11,10 +11,10 @@
 
 namespace SychO\PrivateFacade;
 
-use Flarum\Api\Serializer\ForumSerializer;
 use Flarum\Extend;
 use Flarum\Frontend\Document;
 use Flarum\Http\RequestUtil;
+use Flarum\Settings\SettingsRepositoryInterface;
 use Flarum\User\Exception\PermissionDeniedException;
 use Psr\Http\Message\ServerRequestInterface;
 use SychO\PrivateFacade\Api\Controller\DeleteIllustrationController;
@@ -22,8 +22,8 @@ use SychO\PrivateFacade\Api\Controller\UploadIllustrationController;
 
 return [
     (new Extend\Routes('api'))
-        ->post('/private_facade_illustration', 'afrux-theme-base.banner.upload', UploadIllustrationController::class)
-        ->delete('/private_facade_illustration', 'afrux-theme-base.banner.remove', DeleteIllustrationController::class),
+        ->post('/private_facade_illustration', 'sycho-private-facade.illustration.upload', UploadIllustrationController::class)
+        ->delete('/private_facade_illustration', 'sycho-private-facade.illustration.remove', DeleteIllustrationController::class),
 
     (new Extend\Frontend('forum'))
         ->js(__DIR__.'/js/dist/forum.js')
@@ -56,9 +56,24 @@ return [
         ->default('sycho-private-facade.header_layout', 'show_only_logo')
         ->default('sycho-private-facade.primary_color_bg', true)
         ->default('sycho-private-facade.force_redirect', true)
+        ->default('sycho-private-facade.use_welcome_hero_text', true)
         ->serializeToForum('sycho-private-facade.illustration_url', 'sycho-private-facade.illustration_path', ExposeIllustration::class)
         ->serializeToForum('sycho-private-facade.header_layout', 'sycho-private-facade.header_layout')
-        ->serializeToForum('sycho-private-facade.primary_color_bg', 'sycho-private-facade.primary_color_bg', 'boolval'),
+        ->serializeToForum('sycho-private-facade.primary_color_bg', 'sycho-private-facade.primary_color_bg', 'boolval')
+        ->serializeToForum('sycho-private-facade.screen_banner_title', 'sycho-private-facade.screen_banner_title', function ($value) {
+            $settings = resolve(SettingsRepositoryInterface::class);
+
+            return $settings->get('sycho-private-facade.use_welcome_hero_text')
+                ? $settings->get('welcome_title')
+                : $value;
+        })
+        ->serializeToForum('sycho-private-facade.screen_banner_message', 'sycho-private-facade.screen_banner_message', function ($value) {
+            $settings = resolve(SettingsRepositoryInterface::class);
+
+            return $settings->get('sycho-private-facade.use_welcome_hero_text')
+                ? $settings->get('welcome_message')
+                : $value;
+        }),
 
     (new Extend\Middleware('forum'))
         ->add(PrivateFacadeMiddleware::class),

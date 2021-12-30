@@ -59,8 +59,8 @@ export default class PrivateFacade<T extends IPageAttrs> extends Page<T> {
         <div className="PrivateFacade-container container">
           <div className="PrivateFacade-AuthView">
             <div className="PrivateFacade-AuthView-interface" data-primary-background={app.forum.attribute('sycho-private-facade.primary_color_bg')}>
-              <h2 className="PrivateFacade-AuthView-interface-title">{app.forum.attribute('welcomeTitle')}</h2>
-              <p className="PrivateFacade-AuthView-interface-message">{m.trust(app.forum.attribute('welcomeMessage'))}</p>
+              <h2 className="PrivateFacade-AuthView-interface-title">{app.forum.attribute('sycho-private-facade.screen_banner_title')}</h2>
+              <p className="PrivateFacade-AuthView-interface-message">{m.trust(app.forum.attribute('sycho-private-facade.screen_banner_message'))}</p>
               <DefaultLoginIllustration />
             </div>
             <div className="PrivateFacade-AuthView-form">

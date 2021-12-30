@@ -1,5 +1,6 @@
 import app from 'flarum/admin/app';
 import UploadImageButton from './components/UploadImageButton';
+import AdminPage from "flarum/admin/components/AdminPage";
 
 app.initializers.add('sycho/flarum-private-facade', (app) => {
   app.extensionData
@@ -14,6 +15,37 @@ app.initializers.add('sycho/flarum-private-facade', (app) => {
         hide_secondary_items: app.translator.trans('sycho-private-facade.admin.settings.header_layout.options.hide_secondary_items'),
       },
       type: 'select',
+    })
+    .registerSetting(function (this: AdminPage) {
+      const useWelcomeBannerValue = this.setting('sycho-private-facade.use_welcome_hero_text')();
+      console.log(typeof useWelcomeBannerValue, useWelcomeBannerValue);
+      // @ts-ignore
+      const useWelcomeBanner = useWelcomeBannerValue === true || useWelcomeBannerValue === '1';
+
+      return (
+        <div className="Form-group BasicsPage-welcomeBanner-input PrivateFacade-screenBanner">
+          <label>{app.translator.trans('sycho-private-facade.admin.settings.screen_banner_heading')}</label>
+          <input
+            disabled={useWelcomeBanner}
+            type="text"
+            className="FormControl"
+            placeholder={app.translator.trans('sycho-private-facade.admin.settings.screen_banner_title')}
+            aria-label={app.translator.trans('sycho-private-facade.admin.settings.screen_banner_title')}
+            bidi={this.setting('sycho-private-facade.screen_banner_title')} />
+          <textarea
+            disabled={useWelcomeBanner}
+            className="FormControl"
+            placeholder={app.translator.trans('sycho-private-facade.admin.settings.screen_banner_description')}
+            aria-label={app.translator.trans('sycho-private-facade.admin.settings.screen_banner_description')}
+            bidi={this.setting('sycho-private-facade.screen_banner_message')} />
+        </div>
+      )
+    })
+    .registerSetting({
+      setting: 'sycho-private-facade.use_welcome_hero_text',
+      label: app.translator.trans('sycho-private-facade.admin.settings.use_welcome_hero_text'),
+      default: true,
+      type: 'boolean',
     })
     .registerSetting({
       setting: 'sycho-private-facade.primary_color_bg',

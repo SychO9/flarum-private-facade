@@ -11,6 +11,10 @@ sycho-private-facade:
       illustration_path: Illustration Image
       illustration_path_help: Checkout {link} for amazing vectors.
       primary_color_bg: Use a Primary Color Background
+      screen_banner_description: Screen Message
+      screen_banner_heading: Screen Banner
+      screen_banner_title: Screen Title
+      use_welcome_hero_text: Use Welcome Banner Text
 
   forum:
     log_in_label: => core.ref.log_in
