@@ -1,6 +1,6 @@
 import app from 'flarum/admin/app';
 import UploadImageButton from './components/UploadImageButton';
-import AdminPage from "flarum/admin/components/AdminPage";
+import AdminPage from 'flarum/admin/components/AdminPage';
 
 app.initializers.add('sycho/flarum-private-facade', (app) => {
   app.extensionData
@@ -31,15 +31,17 @@ app.initializers.add('sycho/flarum-private-facade', (app) => {
             className="FormControl"
             placeholder={app.translator.trans('sycho-private-facade.admin.settings.screen_banner_title')}
             aria-label={app.translator.trans('sycho-private-facade.admin.settings.screen_banner_title')}
-            bidi={this.setting('sycho-private-facade.screen_banner_title')} />
+            bidi={this.setting('sycho-private-facade.screen_banner_title')}
+          />
           <textarea
             disabled={useWelcomeBanner}
             className="FormControl"
             placeholder={app.translator.trans('sycho-private-facade.admin.settings.screen_banner_description')}
             aria-label={app.translator.trans('sycho-private-facade.admin.settings.screen_banner_description')}
-            bidi={this.setting('sycho-private-facade.screen_banner_message')} />
+            bidi={this.setting('sycho-private-facade.screen_banner_message')}
+          />
         </div>
-      )
+      );
     })
     .registerSetting({
       setting: 'sycho-private-facade.use_welcome_hero_text',
