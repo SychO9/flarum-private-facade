@@ -1,4 +1,4 @@
-# Private Facade
+# Private Forum Facade
 
 ![flarum version](https://img.shields.io/badge/flarum-%5E1.2.0-%23e7742e?style=flat-square)
 

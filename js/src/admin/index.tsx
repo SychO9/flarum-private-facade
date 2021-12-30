@@ -65,15 +65,6 @@ app.initializers.add('sycho/flarum-private-facade', (app) => {
       return (
         <div className="Form-group HeroImageForm">
           <label for="sycho-private-facade.illustration_path">{app.translator.trans('sycho-private-facade.admin.settings.illustration_path')}</label>
-          <p className="helpText">
-            {app.translator.trans('sycho-private-facade.admin.settings.illustration_path_help', {
-              link: (
-                <a href="https://themeisle.com/illustrations/" target="_blank" rel="nofollow noopener">
-                  ThemeIsle
-                </a>
-              ),
-            })}
-          </p>
           <UploadImageButton
             setting="sycho-private-facade.illustration_path"
             serializedName="sycho-private-facade.illustration_url"

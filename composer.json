@@ -1,6 +1,6 @@
 {
     "name": "sycho/flarum-private-facade",
-    "description": "Force guests to an interface with only login and signup forms",
+    "description": "Force guests to an interface with only login and signup forms.",
     "keywords": [
         "flarum", "private", "login", "signup", "page"
     ],
@@ -37,7 +37,7 @@
     },
     "extra": {
         "flarum-extension": {
-            "title": "Private Facade",
+            "title": "Private Forum Facade",
             "category": "feature",
             "icon": {
                 "name": "fas fa-user-lock",

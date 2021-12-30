@@ -9,7 +9,6 @@ sycho-private-facade:
           hide_secondary_items: Hide Secondary Items (Search, Login and Signup links)
         title: Header Layout
       illustration_path: Illustration Image
-      illustration_path_help: Checkout {link} for amazing vectors.
       primary_color_bg: Use a Primary Color Background
       screen_banner_description: Screen Message
       screen_banner_heading: Screen Banner
