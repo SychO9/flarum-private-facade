@@ -25,11 +25,16 @@ class PrivateFacadeMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $actor = RequestUtil::getActor($request);
-        $excludedRoute = in_array($request->getUri()->getPath(), ['/login', '/signup'], true);
+        $excludedRoute = in_array(
+            $request->getAttribute('routeName'),
+            [
+                'login', 'signup', 'sycho-private-facade.login', 'sycho-private-facade.signup',
+                'resetPassword', 'confirmEmail', 'savePassword', 'confirmEmail.submit',
+            ],
+            true
+        );
 
         if (
-            $request->getMethod() === 'GET'
-            &&
             $actor->isGuest()
             &&
             ! $excludedRoute
