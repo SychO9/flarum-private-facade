@@ -33,6 +33,11 @@ class PrivateFacadeMiddleware implements MiddlewareInterface
             ],
             true
         );
+        $isPrivateFacade = in_array(
+            $request->getAttribute('routeName'),
+            ['sycho-private-facade.login', 'sycho-private-facade.signup'],
+            true
+        );
 
         if (
             $actor->isGuest()
@@ -44,7 +49,7 @@ class PrivateFacadeMiddleware implements MiddlewareInterface
             return new RedirectResponse('/login');
         }
 
-        if (! $actor->isGuest() && $excludedRoute) {
+        if (! $actor->isGuest() && $isPrivateFacade) {
             return new RedirectResponse('/');
         }
 
