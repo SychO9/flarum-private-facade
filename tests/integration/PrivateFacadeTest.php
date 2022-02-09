@@ -42,6 +42,18 @@ class PrivateFacadeTest extends TestCase
     }
 
     /** @test */
+    public function password_reset_route_works_when_logged_in()
+    {
+        $response = $this->send(
+            $this->request('GET', '/reset/lol', [
+                'authenticatedAs' => 1
+            ])
+        );
+
+        $this->assertEquals(404, $response->getStatusCode());
+    }
+
+    /** @test */
     public function signup_route_works()
     {
         $response = $this->send(
