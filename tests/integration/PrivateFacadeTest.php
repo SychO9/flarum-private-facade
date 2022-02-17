@@ -15,7 +15,9 @@ class PrivateFacadeTest extends TestCase
         parent::setUp();
 
         $this->extend(
-            (new Extend\Csrf)->exemptRoute('login')
+            (new Extend\Csrf)
+                ->exemptRoute('login')
+                ->exemptRoute('register')
         );
 
         $this->extension('sycho-private-facade');
@@ -63,9 +65,9 @@ class PrivateFacadeTest extends TestCase
         $signupLoginResponse = $this->send(
             $this->request('POST', '/register', [
                 'json' => [
-                    'username' => 'potato',
-                    'email' => 'potato@machine.local',
-                    'password' => 'password'
+                    'username' => 'test',
+                    'password' => 'too-obscure',
+                    'email' => 'test@machine.local',
                 ]
             ])
         );
