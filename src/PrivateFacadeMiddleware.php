@@ -28,7 +28,7 @@ class PrivateFacadeMiddleware implements MiddlewareInterface
         $excludedRoute = in_array(
             $request->getAttribute('routeName'),
             [
-                'login', 'signup', 'sycho-private-facade.login', 'sycho-private-facade.signup',
+                'login', 'register', 'sycho-private-facade.login', 'sycho-private-facade.signup',
                 'resetPassword', 'confirmEmail', 'savePassword', 'confirmEmail.submit',
             ],
             true
