@@ -60,7 +60,18 @@ class PrivateFacadeTest extends TestCase
             $this->request('GET', '/signup')
         );
 
+        $signupLoginResponse = $this->send(
+            $this->request('POST', '/register', [
+                'json' => [
+                    'username' => 'potato',
+                    'email' => 'potato@machine.local',
+                    'password' => 'password'
+                ]
+            ])
+        );
+
         $this->assertEquals(200, $response->getStatusCode());
+        $this->assertEquals(200, $signupLoginResponse->getStatusCode());
     }
 
     /** @test */
