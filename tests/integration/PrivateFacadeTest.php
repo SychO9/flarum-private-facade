@@ -71,7 +71,7 @@ class PrivateFacadeTest extends TestCase
         );
 
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertEquals(200, $signupLoginResponse->getStatusCode());
+        $this->assertEquals(201, $signupLoginResponse->getStatusCode());
     }
 
     /** @test */
