@@ -30,6 +30,8 @@ class PrivateFacadeMiddleware implements MiddlewareInterface
         $extensionExcludedRoutes = [
             'login', 'register', 'sycho-private-facade.login', 'sycho-private-facade.signup',
             'resetPassword', 'confirmEmail', 'savePassword', 'confirmEmail.submit',
+            // FoF-OAuth
+            'auth.twitter', 'fof-oauth',
         ];
 
         if (! empty($userExcludedRoutes)) {
