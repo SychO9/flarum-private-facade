@@ -88,6 +88,18 @@ class PrivateFacadeTest extends TestCase
     }
 
     /** @test */
+    public function guests_not_force_redirected_in_client_exluded_routes()
+    {
+        $this->setting('sycho-private-facade.route_exclusions', 'default');
+
+        $response = $this->send(
+            $this->request('GET', '/')
+        );
+
+        $this->assertEquals(200, $response->getStatusCode());
+    }
+
+    /** @test */
     public function guests_not_force_redirected_by_choice()
     {
         $this->setting('sycho-private-facade.force_redirect', false);

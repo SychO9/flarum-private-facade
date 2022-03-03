@@ -61,6 +61,11 @@ app.initializers.add('sycho/flarum-private-facade', (app) => {
       default: true,
       type: 'boolean',
     })
+    .registerSetting({
+      setting: 'sycho-private-facade.route_exclusions',
+      label: app.translator.trans('sycho-private-facade.admin.settings.route_exclusions'),
+      type: 'text',
+    })
     .registerSetting(() => {
       return (
         <div className="Form-group HeroImageForm">

@@ -25,14 +25,19 @@ class PrivateFacadeMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $actor = RequestUtil::getActor($request);
-        $excludedRoute = in_array(
-            $request->getAttribute('routeName'),
-            [
-                'login', 'register', 'sycho-private-facade.login', 'sycho-private-facade.signup',
-                'resetPassword', 'confirmEmail', 'savePassword', 'confirmEmail.submit',
-            ],
-            true
-        );
+
+        $userExcludedRoutes = $this->settings->get('sycho-private-facade.route_exclusions') ?: '';
+        $extensionExcludedRoutes = [
+            'login', 'register', 'sycho-private-facade.login', 'sycho-private-facade.signup',
+            'resetPassword', 'confirmEmail', 'savePassword', 'confirmEmail.submit',
+        ];
+
+        if (! empty($userExcludedRoutes)) {
+            $extensionExcludedRoutes = array_merge($extensionExcludedRoutes, explode(', ', $userExcludedRoutes));
+        }
+
+        $excludedRoute = in_array($request->getAttribute('routeName'), $extensionExcludedRoutes, true);
+
         $isPrivateFacade = in_array(
             $request->getAttribute('routeName'),
             ['sycho-private-facade.login', 'sycho-private-facade.signup'],
