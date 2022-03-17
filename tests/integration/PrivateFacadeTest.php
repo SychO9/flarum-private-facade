@@ -84,7 +84,7 @@ class PrivateFacadeTest extends TestCase
         );
 
         $this->assertEquals(302, $response->getStatusCode());
-        $this->assertEquals('/login', $response->getHeader('Location')[0]);
+        $this->assertEquals('http://localhost/login', $response->getHeader('Location')[0]);
     }
 
     /** @test */
@@ -136,8 +136,8 @@ class PrivateFacadeTest extends TestCase
 
         $this->assertEquals(200, $postLoginResponse->getStatusCode());
         $this->assertEquals(302, $loginResponse->getStatusCode());
-        $this->assertEquals('/', $loginResponse->getHeader('Location')[0]);
+        $this->assertEquals('http://localhost/all', $loginResponse->getHeader('Location')[0]);
         $this->assertEquals(302, $signupResponse->getStatusCode());
-        $this->assertEquals('/', $signupResponse->getHeader('Location')[0]);
+        $this->assertEquals('http://localhost/all', $signupResponse->getHeader('Location')[0]);
     }
 }
