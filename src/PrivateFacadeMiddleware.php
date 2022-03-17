@@ -3,6 +3,7 @@
 namespace SychO\PrivateFacade;
 
 use Flarum\Http\RequestUtil;
+use Flarum\Http\UrlGenerator;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Laminas\Diactoros\Response\RedirectResponse;
 use Psr\Http\Message\ResponseInterface;
@@ -17,9 +18,15 @@ class PrivateFacadeMiddleware implements MiddlewareInterface
      */
     protected $settings;
 
-    public function __construct(SettingsRepositoryInterface $settings)
+    /**
+     * @var UrlGenerator
+     */
+    protected $url;
+
+    public function __construct(SettingsRepositoryInterface $settings, UrlGenerator $url)
     {
         $this->settings = $settings;
+        $this->url = $url;
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
@@ -53,11 +60,11 @@ class PrivateFacadeMiddleware implements MiddlewareInterface
             &&
             $this->settings->get('sycho-private-facade.force_redirect')
         ) {
-            return new RedirectResponse('/login');
+            return new RedirectResponse($this->url->to('forum')->route('sycho-private-facade.login'));
         }
 
         if (! $actor->isGuest() && $isPrivateFacade) {
-            return new RedirectResponse('/');
+            return new RedirectResponse($this->url->to('forum')->route('index'));
         }
 
         return $handler->handle($request);
