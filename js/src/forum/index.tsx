@@ -63,7 +63,7 @@ app.initializers.add('sycho/flarum-private-facade', () => {
       );
     }
 
-    if (items.has('logIn')) {
+    if (items.has('signUp')) {
       items.setContent(
         'signUp',
         <LinkButton className="Button Button--link" href={app.route('signup')}>
