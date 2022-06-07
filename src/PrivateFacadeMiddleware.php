@@ -71,17 +71,17 @@ class PrivateFacadeMiddleware implements MiddlewareInterface
         return $handler->handle($request);
     }
 
-    public static function getBackendRouteExclusions(string $userExcludedRoutes): array
+    public static function getBackendRouteExclusions(?string $userExcludedRoutes): array
     {
         return self::getRouteExclusions($userExcludedRoutes, self::BACKEND_ROUTE_EXCLUSIONS);
     }
 
-    public static function getFrontendRouteExclusions(string $userExcludedRoutes): array
+    public static function getFrontendRouteExclusions(?string $userExcludedRoutes): array
     {
         return self::getRouteExclusions($userExcludedRoutes, self::FRONTEND_ROUTE_EXCLUSIONS);
     }
 
-    protected static function getRouteExclusions(string $userExcludedRoutes, array $extensionExcludedRoutes): array
+    protected static function getRouteExclusions(?string $userExcludedRoutes, array $extensionExcludedRoutes): array
     {
         if (! empty($userExcludedRoutes)) {
             $extensionExcludedRoutes = array_merge($extensionExcludedRoutes, explode(', ', $userExcludedRoutes));
