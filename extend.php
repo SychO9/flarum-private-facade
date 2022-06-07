@@ -57,6 +57,9 @@ return [
         ->default('sycho-private-facade.primary_color_bg', true)
         ->default('sycho-private-facade.force_redirect', true)
         ->default('sycho-private-facade.use_welcome_hero_text', true)
+        ->serializeToForum('sycho-private-facade.route_exclusions', 'sycho-private-facade.route_exclusions', function ($value) {
+            return PrivateFacadeMiddleware::getFrontendRouteExclusions($value);
+        })
         ->serializeToForum('sycho-private-facade.illustration_url', 'sycho-private-facade.illustration_path', ExposeIllustration::class)
         ->serializeToForum('sycho-private-facade.header_layout', 'sycho-private-facade.header_layout')
         ->serializeToForum('sycho-private-facade.primary_color_bg', 'sycho-private-facade.primary_color_bg', 'boolval')

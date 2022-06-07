@@ -9,7 +9,7 @@ import Mithril from 'mithril';
 import Page, { IPageAttrs } from 'flarum/common/components/Page';
 import classList from 'flarum/common/utils/classList';
 
-type SubRoute = 'login' | 'signup';
+type SubRoute = 'sycho-private-facade.login' | 'sycho-private-facade.signup';
 type SubRouteDefinition = {
   label: string;
   component: any;
@@ -17,15 +17,15 @@ type SubRouteDefinition = {
 };
 
 const routes: () => Record<SubRoute, SubRouteDefinition> = () => ({
-  login: {
+  'sycho-private-facade.login': {
     label: extractText(app.translator.trans('sycho-private-facade.forum.log_in_label')),
     component: LogInView,
-    next: 'signup',
+    next: 'sycho-private-facade.signup',
   },
-  signup: {
+  'sycho-private-facade.signup': {
     label: extractText(app.translator.trans('sycho-private-facade.forum.sign_up_label')),
     component: SignUpView,
-    next: 'login',
+    next: 'sycho-private-facade.login',
   },
 });
 
@@ -38,7 +38,7 @@ export default class PrivateFacade<T extends IPageAttrs> extends Page<T> {
 
     this.routes = routes();
     // @ts-ignore
-    this.currentRoute = this.routes[app.current.data.routeName as 'login' | 'signup'];
+    this.currentRoute = this.routes[app.current.data.routeName as 'sycho-private-facade.login' | 'sycho-private-facade.signup'];
 
     app.setTitle(this.currentRoute.label);
 
@@ -74,7 +74,7 @@ export default class PrivateFacade<T extends IPageAttrs> extends Page<T> {
                       className="Button Button--block PrivateFacade-Button--outline PrivateFacade-Button"
                       onclick={() => {
                         if (
-                          ['login', 'signup'].includes(app.history.getPrevious()?.name) &&
+                          ['sycho-private-facade.login', 'sycho-private-facade.signup'].includes(app.history.getPrevious()?.name) &&
                           app.history.getPrevious()?.name === this.currentRoute.next
                         ) {
                           app.history.back();

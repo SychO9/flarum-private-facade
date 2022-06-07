@@ -6,20 +6,21 @@ import HeaderSecondary from 'flarum/forum/components/HeaderSecondary';
 import Mithril from 'mithril';
 import Navigation from 'flarum/common/components/Navigation';
 import LinkButton from 'flarum/common/components/LinkButton';
+import DefaultResolver from "flarum/common/resolvers/DefaultResolver";
 
 app.initializers.add('sycho/flarum-private-facade', () => {
-  app.routes.login = {
+  app.routes['sycho-private-facade.login'] = {
     path: '/login',
     component: PrivateFacade,
   };
 
-  app.routes.signup = {
+  app.routes['sycho-private-facade.signup'] = {
     path: '/signup',
     component: PrivateFacade,
   };
 
   // @ts-ignore
-  const isPrivateFacadePage = (): boolean => ['login', 'signup'].includes(app.current.data.routeName);
+  const isPrivateFacadePage = (): boolean => ['sycho-private-facade.login', 'sycho-private-facade.signup'].includes(app.current.data.routeName);
 
   override(HeaderSecondary.prototype, 'view', (orig, ...args) => {
     if (isPrivateFacadePage() && ['show_only_logo', 'hide_secondary_items'].includes(app.forum.attribute('sycho-private-facade.header_layout'))) {
@@ -57,7 +58,7 @@ app.initializers.add('sycho/flarum-private-facade', () => {
     if (items.has('logIn')) {
       items.setContent(
         'logIn',
-        <LinkButton className="Button Button--link" href={app.route('login')}>
+        <LinkButton className="Button Button--link" href={app.route('sycho-private-facade.login')}>
           {app.translator.trans('core.forum.header.log_in_link')}
         </LinkButton>
       );
@@ -66,10 +67,18 @@ app.initializers.add('sycho/flarum-private-facade', () => {
     if (items.has('signUp')) {
       items.setContent(
         'signUp',
-        <LinkButton className="Button Button--link" href={app.route('signup')}>
+        <LinkButton className="Button Button--link" href={app.route('sycho-private-facade.signup')}>
           {app.translator.trans('core.forum.header.sign_up_link')}
         </LinkButton>
       );
     }
+  });
+
+  override(DefaultResolver.prototype, 'onmatch', function (orig, args, requestedPath, route) {
+    if (!app.forum.attribute<string[]>('sycho-private-facade.route_exclusions').includes(this.routeName)) {
+      return m.route.SKIP;
+    }
+
+    return orig(args, requestedPath, route);
   });
 });

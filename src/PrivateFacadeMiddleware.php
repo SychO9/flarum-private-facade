@@ -13,6 +13,16 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class PrivateFacadeMiddleware implements MiddlewareInterface
 {
+    public const BACKEND_ROUTE_EXCLUSIONS = [
+        'login', 'register', 'sycho-private-facade.login', 'sycho-private-facade.signup',
+        'resetPassword', 'confirmEmail', 'savePassword', 'confirmEmail.submit',
+        // FoF-OAuth
+        'auth.twitter', 'fof-oauth',
+    ];
+    public const FRONTEND_ROUTE_EXCLUSIONS = [
+        'sycho-private-facade.login', 'sycho-private-facade.signup',
+    ];
+
     /**
      * @var SettingsRepositoryInterface
      */
@@ -34,16 +44,7 @@ class PrivateFacadeMiddleware implements MiddlewareInterface
         $actor = RequestUtil::getActor($request);
 
         $userExcludedRoutes = $this->settings->get('sycho-private-facade.route_exclusions') ?: '';
-        $extensionExcludedRoutes = [
-            'login', 'register', 'sycho-private-facade.login', 'sycho-private-facade.signup',
-            'resetPassword', 'confirmEmail', 'savePassword', 'confirmEmail.submit',
-            // FoF-OAuth
-            'auth.twitter', 'fof-oauth',
-        ];
-
-        if (! empty($userExcludedRoutes)) {
-            $extensionExcludedRoutes = array_merge($extensionExcludedRoutes, explode(', ', $userExcludedRoutes));
-        }
+        $extensionExcludedRoutes = self::getBackendRouteExclusions($userExcludedRoutes);
 
         $excludedRoute = in_array($request->getAttribute('routeName'), $extensionExcludedRoutes, true);
 
@@ -68,5 +69,24 @@ class PrivateFacadeMiddleware implements MiddlewareInterface
         }
 
         return $handler->handle($request);
+    }
+
+    public static function getBackendRouteExclusions(string $userExcludedRoutes): array
+    {
+        return self::getRouteExclusions($userExcludedRoutes, self::BACKEND_ROUTE_EXCLUSIONS);
+    }
+
+    public static function getFrontendRouteExclusions(string $userExcludedRoutes): array
+    {
+        return self::getRouteExclusions($userExcludedRoutes, self::FRONTEND_ROUTE_EXCLUSIONS);
+    }
+
+    protected static function getRouteExclusions(string $userExcludedRoutes, array $extensionExcludedRoutes): array
+    {
+        if (! empty($userExcludedRoutes)) {
+            $extensionExcludedRoutes = array_merge($extensionExcludedRoutes, explode(', ', $userExcludedRoutes));
+        }
+
+        return $extensionExcludedRoutes;
     }
 }
