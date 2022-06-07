@@ -37,7 +37,7 @@ app.initializers.add('sycho/flarum-private-facade', () => {
 
     const original = orig(...args);
 
-    if (isPrivateFacadePage() && original && app.forum.attribute('sycho-private-facade.primary_color_bg')) {
+    if (isPrivateFacadePage() && original && app.forum.attribute('sycho-private-facade.primary_color_bg') && app.forum.attribute('sycho-private-facade.header_layout') !== 'show_header') {
       (original as Mithril.Vnode<any>).attrs['data-primary-background'] = true;
     }
 
