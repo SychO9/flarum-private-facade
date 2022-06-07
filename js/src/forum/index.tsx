@@ -6,7 +6,7 @@ import HeaderSecondary from 'flarum/forum/components/HeaderSecondary';
 import Mithril from 'mithril';
 import Navigation from 'flarum/common/components/Navigation';
 import LinkButton from 'flarum/common/components/LinkButton';
-import DefaultResolver from "flarum/common/resolvers/DefaultResolver";
+import DefaultResolver from 'flarum/common/resolvers/DefaultResolver';
 
 app.initializers.add('sycho/flarum-private-facade', () => {
   app.routes['sycho-private-facade.login'] = {
@@ -37,7 +37,12 @@ app.initializers.add('sycho/flarum-private-facade', () => {
 
     const original = orig(...args);
 
-    if (isPrivateFacadePage() && original && app.forum.attribute('sycho-private-facade.primary_color_bg') && app.forum.attribute('sycho-private-facade.header_layout') !== 'show_header') {
+    if (
+      isPrivateFacadePage() &&
+      original &&
+      app.forum.attribute('sycho-private-facade.primary_color_bg') &&
+      app.forum.attribute('sycho-private-facade.header_layout') !== 'show_header'
+    ) {
       (original as Mithril.Vnode<any>).attrs['data-primary-background'] = true;
     }
 
