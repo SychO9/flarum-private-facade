@@ -80,7 +80,9 @@ app.initializers.add('sycho/flarum-private-facade', () => {
   });
 
   override(DefaultResolver.prototype, 'onmatch', function (orig, args, requestedPath, route) {
-    if (!app.forum.attribute<string[]>('sycho-private-facade.route_exclusions').includes(this.routeName)) {
+    if (!app.session.user
+      && app.forum.attribute<boolean>('sycho-private-facade.force_redirect')
+      && !app.forum.attribute<Array<string>>('sycho-private-facade.route_exclusions').includes(this.routeName)) {
       return m.route.SKIP;
     }
 

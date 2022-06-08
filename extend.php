@@ -57,6 +57,7 @@ return [
         ->default('sycho-private-facade.primary_color_bg', true)
         ->default('sycho-private-facade.force_redirect', true)
         ->default('sycho-private-facade.use_welcome_hero_text', true)
+        ->serializeToForum('sycho-private-facade.force_redirect', 'sycho-private-facade.force_redirect', 'boolval')
         ->serializeToForum('sycho-private-facade.route_exclusions', 'sycho-private-facade.route_exclusions', function ($value) {
             return PrivateFacadeMiddleware::getFrontendRouteExclusions($value);
         })
