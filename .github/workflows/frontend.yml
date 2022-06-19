@@ -10,8 +10,8 @@ jobs:
       enable_prettier: true
       enable_typescript: true
 
-      frontend_directory: ./framework/core/js
-      backend_directory: ./framework/core
+      frontend_directory: ./js
+      backend_directory: .
       js_package_manager: yarn
       main_git_branch: main
 
