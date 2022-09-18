@@ -1,7 +1,7 @@
 import Component, { ComponentAttrs } from 'flarum/common/Component';
 import LogInModal from 'flarum/forum/components/LogInModal';
 import icon from 'flarum/common/helpers/icon';
-import Mithril from 'mithril';
+import type Mithril from 'mithril';
 import mapChildren from '../utils/mapChildren';
 import { IInternalModalAttrs } from 'flarum/common/components/Modal';
 
@@ -23,8 +23,8 @@ class CustomLogInModal extends LogInModal<AuthViewAttrs & IInternalModalAttrs> {
     return [icon('fas fa-sign-in-alt'), super.title()];
   }
 
-  view() {
-    const view = super.view();
+  view(): JSX.Element {
+    const view = super.view() as Mithril.Vnode<Mithril.Attributes>;
 
     mapChildren(view, (item) => {
       if (item?.attrs?.className?.includes('Modal-header')) {
@@ -33,6 +33,8 @@ class CustomLogInModal extends LogInModal<AuthViewAttrs & IInternalModalAttrs> {
 
       return item;
     });
+
+    view.attrs.className = view.attrs?.className?.replace('fade', '');
 
     return view;
   }

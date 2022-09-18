@@ -20,6 +20,14 @@ class CustomSignUpModal extends SignUpModal<AuthViewAttrs & IInternalModalAttrs>
     return [icon('fas fa-user-plus'), super.title()];
   }
 
+  view(): JSX.Element {
+    const view = super.view() as Mithril.Vnode<Mithril.Attributes>;
+
+    view.attrs.className = view.attrs?.className?.replace('fade', '');
+
+    return view;
+  }
+
   footer() {
     const view = super.footer();
 
