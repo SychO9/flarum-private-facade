@@ -71,6 +71,8 @@
     animation: private-facade-appear 0.5s ease-in;
     transform: none;
     box-shadow: none;
+    top: 0;
+    z-index: var(--zindex-modal);
 
     &-header, &-body, &-footer, &-content {
       background-color: transparent;
@@ -95,14 +97,19 @@
         justify-content: space-between;
         align-items: flex-end;
 
-        > h3 {
-          display: flex;
-          gap: 16px;
-          align-items: center;
-        }
-
         > p {
           margin: 0;
+        }
+      }
+    }
+
+    @media @phone {
+      &-header {
+        > h3 {
+          display: flex;
+          gap: 8px;
+          align-items: center;
+          justify-content: center;
         }
       }
     }
