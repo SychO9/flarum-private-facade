@@ -68,29 +68,31 @@ export default class PrivateFacade<T extends IPageAttrs> extends Page<T> {
             </div>
             <div className="PrivateFacade-AuthView-form">
               <this.currentRoute.component
-                routeSwitcher={() => (app.forum.attribute<boolean>('allowSignUp') ? (
-                  <>
-                    <div className="PrivateFacade-AuthView-separator">
-                      <span class="PrivateFacade-AuthView-separator-label">{app.translator.trans('sycho-private-facade.forum.or_label')}</span>
-                    </div>
-                    <Button
-                      className="Button Button--block PrivateFacade-Button--outline PrivateFacade-Button"
-                      onclick={() => {
-                        if (
-                          ['sycho-private-facade.login', 'sycho-private-facade.signup'].includes(app.history.getPrevious()?.name) &&
-                          app.history.getPrevious()?.name === this.currentRoute.next
-                        ) {
-                          app.history.back();
-                        } else {
-                          app.history.push(this.currentRoute.next, this.routes[this.currentRoute.next].label, app.route(this.currentRoute.next));
-                          m.route.set(app.route(this.currentRoute.next));
-                        }
-                      }}
-                    >
-                      {this.routes[this.currentRoute.next].label}
-                    </Button>
-                  </>
-                ) : null)}
+                routeSwitcher={() =>
+                  app.forum.attribute<boolean>('allowSignUp') ? (
+                    <>
+                      <div className="PrivateFacade-AuthView-separator">
+                        <span class="PrivateFacade-AuthView-separator-label">{app.translator.trans('sycho-private-facade.forum.or_label')}</span>
+                      </div>
+                      <Button
+                        className="Button Button--block PrivateFacade-Button--outline PrivateFacade-Button"
+                        onclick={() => {
+                          if (
+                            ['sycho-private-facade.login', 'sycho-private-facade.signup'].includes(app.history.getPrevious()?.name) &&
+                            app.history.getPrevious()?.name === this.currentRoute.next
+                          ) {
+                            app.history.back();
+                          } else {
+                            app.history.push(this.currentRoute.next, this.routes[this.currentRoute.next].label, app.route(this.currentRoute.next));
+                            m.route.set(app.route(this.currentRoute.next));
+                          }
+                        }}
+                      >
+                        {this.routes[this.currentRoute.next].label}
+                      </Button>
+                    </>
+                  ) : null
+                }
               />
             </div>
           </div>
