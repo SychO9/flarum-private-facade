@@ -68,7 +68,7 @@ export default class PrivateFacade<T extends IPageAttrs> extends Page<T> {
             </div>
             <div className="PrivateFacade-AuthView-form">
               <this.currentRoute.component
-                routeSwitcher={() => (
+                routeSwitcher={() => (app.forum.attribute<boolean>('allowSignUp') ? (
                   <>
                     <div className="PrivateFacade-AuthView-separator">
                       <span class="PrivateFacade-AuthView-separator-label">{app.translator.trans('sycho-private-facade.forum.or_label')}</span>
@@ -90,7 +90,7 @@ export default class PrivateFacade<T extends IPageAttrs> extends Page<T> {
                       {this.routes[this.currentRoute.next].label}
                     </Button>
                   </>
-                )}
+                ) : null)}
               />
             </div>
           </div>
