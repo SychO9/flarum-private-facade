@@ -88,6 +88,19 @@ class PrivateFacadeTest extends TestCase
     }
 
     /** @test */
+    public function guests_force_redirected_to_login_if_signup_is_off()
+    {
+        $this->setting('allow_sign_up', false);
+
+        $response = $this->send(
+            $this->request('GET', '/signup')
+        );
+
+        $this->assertEquals(302, $response->getStatusCode());
+        $this->assertEquals('http://localhost/login', $response->getHeader('Location')[0]);
+    }
+
+    /** @test */
     public function guests_not_force_redirected_in_client_exluded_routes()
     {
         $this->setting('sycho-private-facade.route_exclusions', 'default');
@@ -136,8 +149,8 @@ class PrivateFacadeTest extends TestCase
 
         $this->assertEquals(200, $postLoginResponse->getStatusCode());
         $this->assertEquals(302, $loginResponse->getStatusCode());
-        $this->assertEquals('http://localhost/all', $loginResponse->getHeader('Location')[0]);
+        $this->assertEquals('http://localhost/', $loginResponse->getHeader('Location')[0]);
         $this->assertEquals(302, $signupResponse->getStatusCode());
-        $this->assertEquals('http://localhost/all', $signupResponse->getHeader('Location')[0]);
+        $this->assertEquals('http://localhost/', $signupResponse->getHeader('Location')[0]);
     }
 }
