@@ -72,7 +72,7 @@
     transform: none;
     box-shadow: none;
     top: 0;
-    z-index: var(--zindex-header);
+    z-index: unset;
 
     &-header, &-body, &-footer, &-content {
       background-color: transparent;
@@ -103,14 +103,12 @@
       }
     }
 
-    @media @phone {
-      &-header {
-        > h3 {
-          display: flex;
-          gap: 8px;
-          align-items: center;
-          justify-content: center;
-        }
+    &-header {
+      > h3 {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        justify-content: center;
       }
     }
   }
