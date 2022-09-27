@@ -65,7 +65,7 @@ class PrivateFacadeMiddleware implements MiddlewareInterface
         }
 
         if (! $actor->isGuest() && $isPrivateFacade) {
-            return new RedirectResponse($this->url->to('forum')->route('index'));
+            return new RedirectResponse($this->url->to('forum')->route('default'));
         }
 
         if ($actor->isGuest() && ! $this->settings->get('allow_sign_up') && $request->getAttribute('routeName') === 'sycho-private-facade.signup') {
