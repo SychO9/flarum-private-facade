@@ -4,7 +4,7 @@ on: [workflow_dispatch, push, pull_request]
 
 jobs:
   run:
-    uses: flarum/framework/.github/workflows/REUSABLE_backend.yml@sm/one-gh-actions-job-for-all-tests
+    uses: flarum/framework/.github/workflows/REUSABLE_backend.yml@main
     with:
       enable_backend_testing: true
 
