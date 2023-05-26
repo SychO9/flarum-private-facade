@@ -88,7 +88,7 @@ class PrivateFacadeMiddleware implements MiddlewareInterface
     protected static function getRouteExclusions(?string $userExcludedRoutes, array $extensionExcludedRoutes): array
     {
         if (! empty($userExcludedRoutes)) {
-            $extensionExcludedRoutes = array_merge($extensionExcludedRoutes, explode(', ', $userExcludedRoutes));
+            $extensionExcludedRoutes = array_merge($extensionExcludedRoutes, explode(',', str_replace(' ', '', $userExcludedRoutes)));
         }
 
         return $extensionExcludedRoutes;

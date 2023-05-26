@@ -85,7 +85,7 @@ app.initializers.add('sycho/flarum-private-facade', () => {
       app.forum.attribute<boolean>('sycho-private-facade.force_redirect') &&
       !app.forum.attribute<Array<string>>('sycho-private-facade.route_exclusions').includes(this.routeName)
     ) {
-      return m.route.SKIP;
+      return m.route.set(app.route('sycho-private-facade.login'));
     }
 
     return orig(args, requestedPath, route);

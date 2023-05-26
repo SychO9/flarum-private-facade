@@ -29,6 +29,6 @@ class UploadIllustrationController extends UploadImageController
     {
         $manager = resolve(ImageManager::class);
 
-        return $manager->make($file->getStream())->encode('png');
+        return $manager->make($file->getStream()->getMetadata('uri'))->encode('png');
     }
 }
