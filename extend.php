@@ -61,6 +61,9 @@ return [
         ->serializeToForum('sycho-private-facade.route_exclusions', 'sycho-private-facade.route_exclusions', function ($value) {
             return PrivateFacadeMiddleware::getFrontendRouteExclusions($value);
         })
+        ->serializeToForum('sycho-private-facade.url_exclusions', 'sycho-private-facade.url_exclusions', function (?string $value) {
+            return explode(',', str_replace(' ', '', $value ?? ''));
+        })
         ->serializeToForum('sycho-private-facade.illustration_url', 'sycho-private-facade.illustration_path', ExposeIllustration::class)
         ->serializeToForum('sycho-private-facade.header_layout', 'sycho-private-facade.header_layout')
         ->serializeToForum('sycho-private-facade.primary_color_bg', 'sycho-private-facade.primary_color_bg', 'boolval')

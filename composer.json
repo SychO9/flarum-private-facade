@@ -10,7 +10,8 @@
         "flarum/core": "^1.2.0"
     },
     "require-dev": {
-        "flarum/testing": "^1.0.0"
+        "flarum/testing": "^1.0.0",
+        "symfony/var-dumper": "*"
     },
     "authors": [
         {

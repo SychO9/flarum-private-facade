@@ -17,7 +17,8 @@ class PrivateFacadeMiddleware implements MiddlewareInterface
         'login', 'register', 'sycho-private-facade.login', 'sycho-private-facade.signup',
         'resetPassword', 'confirmEmail', 'savePassword', 'confirmEmail.submit',
         // FoF-OAuth
-        'auth.twitter', 'fof-oauth',
+        'auth.twitter', 'fof-oauth', 'askvortsov-pwa.webmanifest',
+        'askvortsov-pwa.sw', 'askvortsov-pwa.offline'
     ];
     public const FRONTEND_ROUTE_EXCLUSIONS = [
         'sycho-private-facade.login', 'sycho-private-facade.signup',
@@ -44,9 +45,31 @@ class PrivateFacadeMiddleware implements MiddlewareInterface
         $actor = RequestUtil::getActor($request);
 
         $userExcludedRoutes = $this->settings->get('sycho-private-facade.route_exclusions') ?: '';
+        $userExcludedUrls = $this->settings->get('sycho-private-facade.url_exclusions') ?: '';
+
         $extensionExcludedRoutes = self::getBackendRouteExclusions($userExcludedRoutes);
+        $extensionExcludedUrls = explode(',', str_replace(' ', '', $userExcludedUrls));
 
         $excludedRoute = in_array($request->getAttribute('routeName'), $extensionExcludedRoutes, true);
+
+        if (! $excludedRoute) {
+            $currentUri = $request->getUri()->getPath();
+
+            foreach ($extensionExcludedUrls as $url) {
+                // allow for wildcards
+                if (strpos($url, '*') !== false) {
+                    $url = str_replace('*', '.*', preg_quote($url, '/'));
+
+                    if (preg_match('/' . $url . '/', $currentUri)) {
+                        $excludedRoute = true;
+                        break;
+                    }
+                } elseif ($currentUri === $url) {
+                    $excludedRoute = true;
+                    break;
+                }
+            }
+        }
 
         $isPrivateFacade = in_array(
             $request->getAttribute('routeName'),
