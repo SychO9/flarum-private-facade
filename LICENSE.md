@@ -1,16 +1,21 @@
-Private Facade Flarum Extension
+The MIT License (MIT)
 
-Copyright (C) 2021 Sami Ilyes Mazouz "SychO" ilyasmazouz@gmail.com
+Copyright (c) 2023-2024 Sami Mazouz
 
-Subject to Licensee's compliance with the terms and conditions of this Agreement, Licensor hereby grants Licensee a perpetual, non-transferable, non-sublicensable, non-exclusive right and license (a) to integrate the Licensed Software with Licensee's forum.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-Terms and Conditions:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-You are not permitted to reproduce, copy, distribute or resell the Software.
-You are not permitted to allow any third party to use the Software on behalf of or for the benefit of any third party.
-You are not permitted to use the Software in any way which breaches any applicable local, national or international law.
-This software is hereby provided with no warranty.
-The author reserves the right to re-license, for example under MIT, and/or publish the source code/project in the future, for free.
-Intellectual Property and Ownership The author shall at all times retain ownership of the Software as originally downloaded by you and all subsequent downloads of the Software by you. The Software (and the copyright, and other intellectual property rights of whatever nature in the Software, including any modifications made thereto) are and shall remain the property of Sami Ilyes Mazouz. The author reserves the right to grant licences to use the Software to third parties.
-
-Termination This agreement is effective from the date you first use the Software and shall continue until terminated.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

@@ -86,7 +86,9 @@ app.initializers.add('sycho/flarum-private-facade', () => {
       !app.session.user &&
       app.forum.attribute<boolean>('sycho-private-facade.force_redirect') &&
       !app.forum.attribute<Array<string>>('sycho-private-facade.route_exclusions').includes(this.routeName) &&
-      !urlExclusions.some((url) => url.includes('*') ? new RegExp(url.replace(/\*/g, '.*').replace(/\//g, '\\/')).test(requestedPath) : url === requestedPath)
+      !urlExclusions.some((url) =>
+        url.includes('*') ? new RegExp(url.replace(/\*/g, '.*').replace(/\//g, '\\/')).test(requestedPath) : url === requestedPath
+      )
     ) {
       return m.route.set(app.route('sycho-private-facade.login'));
     }
