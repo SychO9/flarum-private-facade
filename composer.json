@@ -5,7 +5,7 @@
         "flarum", "private", "login", "signup", "page"
     ],
     "type": "flarum-extension",
-    "license": "mit",
+    "license": "MIT",
     "require": {
         "flarum/core": "^1.2.0"
     },
