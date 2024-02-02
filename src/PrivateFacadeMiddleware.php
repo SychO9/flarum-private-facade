@@ -13,17 +13,6 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class PrivateFacadeMiddleware implements MiddlewareInterface
 {
-    public const BACKEND_ROUTE_EXCLUSIONS = [
-        'login', 'register', 'sycho-private-facade.login', 'sycho-private-facade.signup',
-        'resetPassword', 'confirmEmail', 'savePassword', 'confirmEmail.submit',
-        // FoF-OAuth
-        'auth.twitter', 'fof-oauth', 'askvortsov-pwa.webmanifest',
-        'askvortsov-pwa.sw', 'askvortsov-pwa.offline'
-    ];
-    public const FRONTEND_ROUTE_EXCLUSIONS = [
-        'sycho-private-facade.login', 'sycho-private-facade.signup',
-    ];
-
     /**
      * @var SettingsRepositoryInterface
      */
@@ -100,12 +89,12 @@ class PrivateFacadeMiddleware implements MiddlewareInterface
 
     public static function getBackendRouteExclusions(?string $userExcludedRoutes): array
     {
-        return self::getRouteExclusions($userExcludedRoutes, self::BACKEND_ROUTE_EXCLUSIONS);
+        return self::getRouteExclusions($userExcludedRoutes, resolve('sycho-private-facade.backend-route-exclusions'));
     }
 
     public static function getFrontendRouteExclusions(?string $userExcludedRoutes): array
     {
-        return self::getRouteExclusions($userExcludedRoutes, self::FRONTEND_ROUTE_EXCLUSIONS);
+        return self::getRouteExclusions($userExcludedRoutes, resolve('sycho-private-facade.frontend-route-exclusions'));
     }
 
     protected static function getRouteExclusions(?string $userExcludedRoutes, array $extensionExcludedRoutes): array
