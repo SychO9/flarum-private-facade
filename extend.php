@@ -19,6 +19,7 @@ use Flarum\User\Exception\PermissionDeniedException;
 use Psr\Http\Message\ServerRequestInterface;
 use SychO\PrivateFacade\Api\Controller\DeleteIllustrationController;
 use SychO\PrivateFacade\Api\Controller\UploadIllustrationController;
+use SychO\PrivateFacade\Providers\RouteExclusionProvider;
 
 return [
     (new Extend\Routes('api'))
@@ -51,6 +52,9 @@ return [
 
     (new Extend\View())
         ->namespace('sycho-private-facade', __DIR__.'/views'),
+
+    (new Extend\ServiceProvider())
+        ->register(RouteExclusionProvider::class),
 
     (new Extend\Settings())
         ->default('sycho-private-facade.header_layout', 'show_only_logo')
