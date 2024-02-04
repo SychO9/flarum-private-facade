@@ -53,9 +53,6 @@ return [
     (new Extend\View())
         ->namespace('sycho-private-facade', __DIR__.'/views'),
 
-    (new Extend\ServiceProvider())
-        ->register(RouteExclusionProvider::class),
-
     (new Extend\Settings())
         ->default('sycho-private-facade.header_layout', 'show_only_logo')
         ->default('sycho-private-facade.primary_color_bg', true)

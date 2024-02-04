@@ -13,6 +13,19 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class PrivateFacadeMiddleware implements MiddlewareInterface
 {
+    public static $backendRouteExclusions = [
+        'login', 'register', 'sycho-private-facade.login', 'sycho-private-facade.signup',
+        'resetPassword', 'confirmEmail', 'savePassword', 'confirmEmail.submit',
+        // FoF-OAuth
+        'auth.twitter', 'fof-oauth',
+        // PWA
+        'askvortsov-pwa.*',
+    ];
+
+    public static $frontendRouteExclusions = [
+        'sycho-private-facade.login', 'sycho-private-facade.signup',
+    ];
+
     /**
      * @var SettingsRepositoryInterface
      */
@@ -39,25 +52,10 @@ class PrivateFacadeMiddleware implements MiddlewareInterface
         $extensionExcludedRoutes = self::getBackendRouteExclusions($userExcludedRoutes);
         $extensionExcludedUrls = explode(',', str_replace(' ', '', $userExcludedUrls));
 
-        $excludedRoute = in_array($request->getAttribute('routeName'), $extensionExcludedRoutes, true);
+        $excludedRoute = Helper::itemsInclude($extensionExcludedRoutes, $request->getAttribute('routeName'));
 
         if (! $excludedRoute) {
-            $currentUri = $request->getUri()->getPath();
-
-            foreach ($extensionExcludedUrls as $url) {
-                // allow for wildcards
-                if (strpos($url, '*') !== false) {
-                    $url = str_replace('*', '.*', preg_quote($url, '/'));
-
-                    if (preg_match('/' . $url . '/', $currentUri)) {
-                        $excludedRoute = true;
-                        break;
-                    }
-                } elseif ($currentUri === $url) {
-                    $excludedRoute = true;
-                    break;
-                }
-            }
+            $excludedRoute = Helper::itemsInclude($extensionExcludedUrls, $request->getUri()->getPath());
         }
 
         $isPrivateFacade = in_array(
@@ -89,12 +87,12 @@ class PrivateFacadeMiddleware implements MiddlewareInterface
 
     public static function getBackendRouteExclusions(?string $userExcludedRoutes): array
     {
-        return self::getRouteExclusions($userExcludedRoutes, resolve('sycho-private-facade.backend-route-exclusions'));
+        return self::getRouteExclusions($userExcludedRoutes, self::$backendRouteExclusions);
     }
 
     public static function getFrontendRouteExclusions(?string $userExcludedRoutes): array
     {
-        return self::getRouteExclusions($userExcludedRoutes, resolve('sycho-private-facade.frontend-route-exclusions'));
+        return self::getRouteExclusions($userExcludedRoutes, self::$frontendRouteExclusions);
     }
 
     protected static function getRouteExclusions(?string $userExcludedRoutes, array $extensionExcludedRoutes): array

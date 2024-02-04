@@ -5,6 +5,7 @@ namespace SychO\PrivateFacade\Extend;
 use Flarum\Extend\ExtenderInterface;
 use Flarum\Extension\Extension;
 use Illuminate\Contracts\Container\Container;
+use SychO\PrivateFacade\PrivateFacadeMiddleware;
 
 class FacadeExclusions implements ExtenderInterface
 {
@@ -31,12 +32,7 @@ class FacadeExclusions implements ExtenderInterface
             return;
         }
 
-        $container->extend('sycho-private-facade.backend-route-exclusions', function ($excludedRoutes) {
-            return array_merge($excludedRoutes, $this->excludedBackendRoutes);
-        });
-
-        $container->extend('sycho-private-facade.frontend-route-exclusions', function ($excludedRoutes) {
-            return array_merge($excludedRoutes, $this->excludedFrontendRoutes);
-        });
+        PrivateFacadeMiddleware::$backendRouteExclusions = array_merge(PrivateFacadeMiddleware::$backendRouteExclusions, $this->excludedBackendRoutes);
+        PrivateFacadeMiddleware::$frontendRouteExclusions = array_merge(PrivateFacadeMiddleware::$frontendRouteExclusions, $this->excludedFrontendRoutes);
     }
 }
