@@ -25,8 +25,9 @@ class UploadIllustrationController extends UploadImageController
 
     protected function makeImage(UploadedFileInterface $file): EncodedImageInterface|StreamInterface
     {
+        /** @var ImageManager $manager */
         $manager = resolve(ImageManager::class);
 
-        return $manager->make($file->getStream()->getMetadata('uri'))->encode('png');
+        return $manager->read($file->getStream()->getMetadata('uri'))->toPng();
     }
 }
