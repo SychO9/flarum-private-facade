@@ -39,10 +39,6 @@ return [
             if ($routeName === 'index' && $actor->isGuest()) {
                 throw new PermissionDeniedException();
             }
-
-            if (in_array($routeName, ['sycho-private-facade.login', 'sycho-private-facade.signup'], true)) {
-                $document->layoutView = "sycho-private-facade::frontend.forum";
-            }
         }),
 
     (new Extend\Frontend('admin'))

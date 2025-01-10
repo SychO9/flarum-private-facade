@@ -34,8 +34,9 @@ export default class LogInSection extends LogInModal<AuthViewAttrs & IInternalMo
   footer() {
     const view = super.footer();
 
-    delete view[0];
-    view[1] = this.attrs.routeSwitcher();
+    if (app.forum.attribute<boolean>('allowSignUp') && view.children instanceof Array) {
+      view.children[1] = this.attrs.routeSwitcher();
+    }
 
     return view;
   }

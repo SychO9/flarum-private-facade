@@ -14,6 +14,7 @@
 
   [data-primary-background] {
     .light-contents-vars(@primary-color, mix(#000, @primary-color, 10%), mix(@body-bg-light, @primary-color, 60%), 'private-facade--interface');
+  --private-facade--interface-color: var(--body-bg);
   }
 }
 
@@ -23,6 +24,7 @@
 
   [data-primary-background] {
     .light-contents-vars(@primary-color, mix(#000, @primary-color, 10%), mix(@body-bg-dark, @primary-color, 60%), 'private-facade--interface');
+  --private-facade--interface-color: var(--body-bg);
   }
 }
 
@@ -75,6 +77,10 @@
     .App-content {
       background-color: transparent;
     }
+  }
+
+  #notices, #footer {
+    display: none;
   }
 }
 
