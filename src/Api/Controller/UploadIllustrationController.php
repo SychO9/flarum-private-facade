@@ -12,7 +12,6 @@
 namespace SychO\PrivateFacade\Api\Controller;
 
 use Flarum\Api\Controller\UploadImageController;
-use Intervention\Image\Image;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Interfaces\EncodedImageInterface;
 use Psr\Http\Message\StreamInterface;
