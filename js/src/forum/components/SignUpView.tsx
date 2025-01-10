@@ -2,7 +2,7 @@ import app from 'flarum/forum/app';
 import type Mithril from 'mithril';
 import Component from 'flarum/common/Component';
 import SignUpModal from 'flarum/forum/components/SignUpModal';
-import icon from 'flarum/common/helpers/icon';
+import Icon from 'flarum/common/components/Icon';
 import { AuthViewAttrs } from './LogInView';
 import { IInternalModalAttrs } from 'flarum/common/components/Modal';
 
@@ -17,7 +17,7 @@ class CustomSignUpModal extends SignUpModal<AuthViewAttrs & IInternalModalAttrs>
 
   // @ts-ignore
   title(): Mithril.Children {
-    return [icon('fas fa-user-plus'), super.title()];
+    return [<Icon name="fas fa-user-plus" />, super.title()];
   }
 
   view(): JSX.Element {

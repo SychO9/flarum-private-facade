@@ -1,6 +1,6 @@
 import Component, { ComponentAttrs } from 'flarum/common/Component';
 import LogInModal from 'flarum/forum/components/LogInModal';
-import icon from 'flarum/common/helpers/icon';
+import Icon from 'flarum/common/components/Icon';
 import type Mithril from 'mithril';
 import mapChildren from '../utils/mapChildren';
 import { IInternalModalAttrs } from 'flarum/common/components/Modal';
@@ -20,7 +20,7 @@ class CustomLogInModal extends LogInModal<AuthViewAttrs & IInternalModalAttrs> {
 
   // @ts-ignore
   title(): Mithril.Children {
-    return [icon('fas fa-sign-in-alt'), super.title()];
+    return [<Icon name="fas fa-sign-in-alt" />, super.title()];
   }
 
   view(): JSX.Element {

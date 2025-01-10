@@ -3,7 +3,7 @@ import UploadImageButton from './components/UploadImageButton';
 import AdminPage from 'flarum/admin/components/AdminPage';
 
 app.initializers.add('sycho/flarum-private-facade', (app) => {
-  app.extensionData
+  app.registry
     .for('sycho-private-facade')
     .registerSetting({
       setting: 'sycho-private-facade.header_layout',
