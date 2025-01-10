@@ -1472,10 +1472,10 @@ flarum-tsconfig@^2.0.0:
     "@types/throttle-debounce" "^2.1.0"
     dayjs "^1.10.4"
 
-flarum-webpack-config@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/flarum-webpack-config/-/flarum-webpack-config-3.0.0.tgz#f61a0c0230ef4d9b3bb6adc683833d6477321461"
-  integrity sha512-wqJlTL8vW4TXoY7TwjdN6oNdRaoec0F6ESmD3XX3hpjRt3NB7VGu0Y6XsNSA1wDa3v77Cz1vvOY590vqtIGQlQ==
+flarum-webpack-config@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/flarum-webpack-config/-/flarum-webpack-config-3.0.1.tgz#6290515125cbe6982e56fcdaa1731fc3f5acda6c"
+  integrity sha512-BBuaWl56CXfBu6/XxvUEQ0G992qbOlAgN3cjCMldqorC0bnrf3cOnIBGuoI47nXOaDmiWrAbUXdkpsgztsKV8A==
   dependencies:
     "@babel/core" "^7.20.2"
     "@babel/plugin-proposal-class-properties" "^7.18.6"
