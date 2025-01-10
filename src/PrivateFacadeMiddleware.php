@@ -13,7 +13,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 class PrivateFacadeMiddleware implements MiddlewareInterface
 {
-    public static $backendRouteExclusions = [
+    public static array $backendRouteExclusions = [
         'login', 'register', 'sycho-private-facade.login', 'sycho-private-facade.signup',
         'resetPassword', 'confirmEmail', 'savePassword', 'confirmEmail.submit',
         // FoF-OAuth
@@ -22,24 +22,14 @@ class PrivateFacadeMiddleware implements MiddlewareInterface
         'askvortsov-pwa.*',
     ];
 
-    public static $frontendRouteExclusions = [
+    public static array $frontendRouteExclusions = [
         'sycho-private-facade.login', 'sycho-private-facade.signup',
     ];
 
-    /**
-     * @var SettingsRepositoryInterface
-     */
-    protected $settings;
-
-    /**
-     * @var UrlGenerator
-     */
-    protected $url;
-
-    public function __construct(SettingsRepositoryInterface $settings, UrlGenerator $url)
-    {
-        $this->settings = $settings;
-        $this->url = $url;
+    public function __construct(
+        protected SettingsRepositoryInterface $settings,
+        protected UrlGenerator $url
+    ) {
     }
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface

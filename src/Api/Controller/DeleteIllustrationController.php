@@ -11,26 +11,14 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class DeleteIllustrationController extends AbstractDeleteController
 {
-    /**
-     * @var SettingsRepositoryInterface
-     */
-    protected $settings;
+    protected Filesystem $uploadDir;
 
-    /**
-     * @var Filesystem
-     */
-    protected $uploadDir;
-
-    public function __construct(SettingsRepositoryInterface $settings, Factory $filesystemFactory)
+    public function __construct(protected SettingsRepositoryInterface $settings, Factory $filesystemFactory)
     {
-        $this->settings = $settings;
         $this->uploadDir = $filesystemFactory->disk('flarum-assets');
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function delete(ServerRequestInterface $request)
+    protected function delete(ServerRequestInterface $request): void
     {
         $request->getAttribute('actor')->assertAdmin();
 

@@ -26,7 +26,7 @@ class FacadeExclusions implements ExtenderInterface
         return $this;
     }
 
-    public function extend(Container $container, Extension $extension = null)
+    public function extend(Container $container, ?Extension $extension = null): void
     {
         if (empty($this->excludedBackendRoutes) && empty($this->excludedFrontendRoutes)) {
             return;

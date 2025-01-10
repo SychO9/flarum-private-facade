@@ -8,14 +8,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class PrivateFacade
 {
-    /**
-     * @var TranslatorInterface
-     */
-    protected $translator;
-
-    public function __construct(TranslatorInterface $translator)
+    public function __construct(protected TranslatorInterface $translator)
     {
-        $this->translator = $translator;
     }
 
     public function __invoke(Document $document, Request $request)

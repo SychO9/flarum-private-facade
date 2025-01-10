@@ -8,19 +8,10 @@ use Illuminate\Contracts\Filesystem\Cloud;
 
 class ExposeIllustration
 {
-    /**
-     * @var Cloud
-     */
-    protected $uploadDir;
+    protected Cloud $uploadDir;
 
-    /**
-     * @var UrlGenerator
-     */
-    protected $url;
-
-    public function __construct(UrlGenerator $url, Factory $filesystemFactory)
+    public function __construct(protected UrlGenerator $url, Factory $filesystemFactory)
     {
-        $this->url = $url;
         $this->uploadDir = $filesystemFactory->disk('flarum-assets');
     }
 
