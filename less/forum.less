@@ -1,15 +1,32 @@
 :root {
   --private-facade--interface-primary-color: var(--primary-color);
   --private-facade--interface-control-bg: var(--control-bg);
-  --private-facade--interface-control-bg-dark: darken(@control-bg, 14);
+  --private-facade--interface-control-bg-dark: var(--control-bg-darken-14);
   --private-facade--interface-bg-color: transparent;
   --private-facade--interface-control-color: var(--control-color);
   --private-facade--interface-control-bg-shaded: var(--control-bg-shaded);
   --private-facade--interface-control-bg-light: var(--control-bg-light);
 }
 
+[data-theme^=light] {
+  --control-bg-darken-14: darken(@control-bg-light, 14);
+  --body-bg-mix-60: mix(@body-bg-light, @primary-color, 60%);
+
+  [data-primary-background] {
+    .light-contents-vars(@primary-color, mix(#000, @primary-color, 10%), mix(@body-bg-light, @primary-color, 60%), 'private-facade--interface');
+  }
+}
+
+[data-theme^=dark] {
+  --control-bg-darken-14: darken(@control-bg-dark, 14);
+  --body-bg-mix-60: mix(@body-bg-dark, @primary-color, 60%);
+
+  [data-primary-background] {
+    .light-contents-vars(@primary-color, mix(#000, @primary-color, 10%), mix(@body-bg-dark, @primary-color, 60%), 'private-facade--interface');
+  }
+}
+
 [data-primary-background] {
-  .light-contents-vars(@primary-color, mix(#000, @primary-color, 10%), mix(@body-bg, @primary-color, 60%), 'private-facade--interface');
   --private-facade--interface-bg-color: var(--primary-color);
   --private-facade--interface-color: var(--body-bg);
   --private-facade--interface-primary-color: var(--body-bg);
