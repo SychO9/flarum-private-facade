@@ -19,15 +19,12 @@
     "authors": [
         {
             "name": "Sami Mazouz",
-            "email": "ilyasmazouz@gmail.com",
             "role": "Developer"
         }
     ],
     "support": {
-        "email": "ilyasmazouz@gmail.com",
-        "forum": "https://discuss.flarum.org/"
+        "forum": "https://discuss.flarum.org/d/29908"
     },
-    "homepage": "https://sycho9.github.io",
     "autoload": {
         "psr-4": {
             "SychO\\PrivateFacade\\": "src/"

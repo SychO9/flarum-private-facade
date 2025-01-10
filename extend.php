@@ -28,6 +28,7 @@ return [
 
     (new Extend\Frontend('forum'))
         ->js(__DIR__.'/js/dist/forum.js')
+        ->jsDirectory(__DIR__.'/js/dist/forum')
         ->css(__DIR__.'/less/forum.less')
         ->route('/login', 'sycho-private-facade.login', PrivateFacade::class)
         ->route('/signup', 'sycho-private-facade.signup', PrivateFacade::class)

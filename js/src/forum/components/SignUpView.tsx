@@ -1,38 +1,32 @@
-import app from 'flarum/forum/app';
-import type Mithril from 'mithril';
 import Component from 'flarum/common/Component';
-import SignUpModal from 'flarum/forum/components/SignUpModal';
-import Icon from 'flarum/common/components/Icon';
-import { AuthViewAttrs } from './LogInView';
-import { IInternalModalAttrs } from 'flarum/common/components/Modal';
+import type { AuthViewAttrs } from './LogInView';
+import type Mithril from 'mithril';
+import LoadingIndicator from 'flarum/common/components/LoadingIndicator';
 
 export default class SignUpView extends Component<AuthViewAttrs> {
+  protected loading: boolean = true;
+  protected SignUpSection: any;
+
+  oninit(vnode: Mithril.Vnode<AuthViewAttrs, this>) {
+    super.oninit(vnode);
+
+    import('flarum/forum/components/SignUpModal').then(() =>
+      import('./SignUpSection').then((SignUpSection) => {
+        this.SignUpSection = SignUpSection.default;
+
+        this.loading = false;
+        m.redraw();
+      })
+    );
+  }
+
   view() {
-    return <CustomSignUpModal routeSwitcher={this.attrs.routeSwitcher} animateShow={() => null} />;
-  }
-}
+    if (this.loading) {
+      return <LoadingIndicator />;
+    }
 
-class CustomSignUpModal extends SignUpModal<AuthViewAttrs & IInternalModalAttrs> {
-  static readonly isDismissible: boolean = false;
+    const SignUpSection = this.SignUpSection;
 
-  // @ts-ignore
-  title(): Mithril.Children {
-    return [<Icon name="fas fa-user-plus" />, super.title()];
-  }
-
-  view(): JSX.Element {
-    const view = super.view() as Mithril.Vnode<Mithril.Attributes>;
-
-    view.attrs.className = view.attrs?.className?.replace('fade', '');
-
-    return view;
-  }
-
-  footer() {
-    const view = super.footer();
-
-    view[0] = this.attrs.routeSwitcher();
-
-    return view;
+    return <SignUpSection routeSwitcher={this.attrs.routeSwitcher} animateShow={() => null} />;
   }
 }

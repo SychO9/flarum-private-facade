@@ -1,24 +1,15 @@
 import app from 'flarum/forum/app';
-import PrivateFacade from './components/PrivateFacade';
 import HeaderPrimary from 'flarum/forum/components/HeaderPrimary';
 import { extend, override } from 'flarum/common/extend';
 import HeaderSecondary from 'flarum/forum/components/HeaderSecondary';
-import Mithril from 'mithril';
+import type Mithril from 'mithril';
 import Navigation from 'flarum/common/components/Navigation';
 import LinkButton from 'flarum/common/components/LinkButton';
 import DefaultResolver from 'flarum/common/resolvers/DefaultResolver';
 
+export { default as extend } from './extend';
+
 app.initializers.add('sycho/flarum-private-facade', () => {
-  app.routes['sycho-private-facade.login'] = {
-    path: '/login',
-    component: PrivateFacade,
-  };
-
-  app.routes['sycho-private-facade.signup'] = {
-    path: '/signup',
-    component: PrivateFacade,
-  };
-
   // @ts-ignore
   const isPrivateFacadePage = (): boolean => ['sycho-private-facade.login', 'sycho-private-facade.signup'].includes(app.current.data.routeName);
 

@@ -1,12 +1,11 @@
 import app from 'flarum/forum/app';
-import Component from 'flarum/common/Component';
 import LogInView from './LogInView';
 import DefaultLoginIllustration from './DefaultLoginIllustration';
 import SignUpView from './SignUpView';
 import Button from 'flarum/common/components/Button';
 import extractText from 'flarum/common/utils/extractText';
-import Mithril from 'mithril';
-import Page, { IPageAttrs } from 'flarum/common/components/Page';
+import type Mithril from 'mithril';
+import Page, { type IPageAttrs } from 'flarum/common/components/Page';
 import classList from 'flarum/common/utils/classList';
 
 type SubRoute = 'sycho-private-facade.login' | 'sycho-private-facade.signup';
