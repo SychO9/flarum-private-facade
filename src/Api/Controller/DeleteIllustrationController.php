@@ -2,14 +2,16 @@
 
 namespace SychO\PrivateFacade\Api\Controller;
 
-use Flarum\Api\Controller\AbstractDeleteController;
+use Flarum\Http\RequestUtil;
 use Flarum\Settings\SettingsRepositoryInterface;
 use Illuminate\Contracts\Filesystem\Factory;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Laminas\Diactoros\Response\EmptyResponse;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
-class DeleteIllustrationController extends AbstractDeleteController
+class DeleteIllustrationController implements RequestHandlerInterface
 {
     protected Filesystem $uploadDir;
 
@@ -18,9 +20,9 @@ class DeleteIllustrationController extends AbstractDeleteController
         $this->uploadDir = $filesystemFactory->disk('flarum-assets');
     }
 
-    protected function delete(ServerRequestInterface $request): void
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        $request->getAttribute('actor')->assertAdmin();
+        RequestUtil::getActor($request)->assertAdmin();
 
         $path = $this->settings->get('sycho-private-facade.illustration_path');
 

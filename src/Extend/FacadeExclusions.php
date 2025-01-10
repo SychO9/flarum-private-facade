@@ -9,8 +9,8 @@ use SychO\PrivateFacade\PrivateFacadeMiddleware;
 
 class FacadeExclusions implements ExtenderInterface
 {
-    private $excludedBackendRoutes = [];
-    private $excludedFrontendRoutes = [];
+    private array $excludedBackendRoutes = [];
+    private array $excludedFrontendRoutes = [];
 
     public function addBackendRouteExclusion(string $route): self
     {
