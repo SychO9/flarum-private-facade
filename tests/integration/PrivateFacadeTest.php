@@ -6,6 +6,9 @@ use Carbon\Carbon;
 use Flarum\Testing\integration\RetrievesAuthorizedUsers;
 use Flarum\Testing\integration\TestCase;
 use Flarum\Extend;
+use PHPUnit\Framework\Attributes\Test;
+use Flarum\Discussion\Discussion;
+use Flarum\Post\Post;
 
 class PrivateFacadeTest extends TestCase
 {
@@ -24,16 +27,16 @@ class PrivateFacadeTest extends TestCase
         $this->extension('sycho-private-facade');
 
         $this->prepareDatabase([
-            'discussions' => [
+            Discussion::class => [
                 ['id' => 3, 'title' => __CLASS__, 'created_at' => Carbon::now(), 'last_posted_at' => Carbon::now(), 'user_id' => 1, 'first_post_id' => 1, 'comment_count' => 5, 'last_post_number' => 5, 'last_post_id' => 10],
             ],
-            'posts' => [
+            Post::class => [
                 ['id' => 5, 'discussion_id' => 3, 'created_at' => Carbon::createFromDate(1975, 5, 21)->toDateTimeString(), 'user_id' => 1, 'type' => 'comment', 'content' => '<t><p>foo bar</p></t>', 'number' => 1],
             ],
        ]);
     }
 
-    /** @test */
+    #[Test]
     public function login_route_works()
     {
         $response = $this->send(
@@ -43,7 +46,7 @@ class PrivateFacadeTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
     }
 
-    /** @test */
+    #[Test]
     public function password_reset_route_works()
     {
         $response = $this->send(
@@ -53,7 +56,7 @@ class PrivateFacadeTest extends TestCase
         $this->assertEquals(404, $response->getStatusCode());
     }
 
-    /** @test */
+    #[Test]
     public function password_reset_route_works_when_logged_in()
     {
         $response = $this->send(
@@ -65,7 +68,7 @@ class PrivateFacadeTest extends TestCase
         $this->assertEquals(404, $response->getStatusCode());
     }
 
-    /** @test */
+    #[Test]
     public function signup_route_works()
     {
         $response = $this->send(
@@ -86,7 +89,7 @@ class PrivateFacadeTest extends TestCase
         $this->assertEquals(201, $signupLoginResponse->getStatusCode());
     }
 
-    /** @test */
+    #[Test]
     public function guests_force_redirected_by_default()
     {
         $response = $this->send(
@@ -97,7 +100,7 @@ class PrivateFacadeTest extends TestCase
         $this->assertEquals('http://localhost/login', $response->getHeader('Location')[0]);
     }
 
-    /** @test */
+    #[Test]
     public function guests_force_redirected_to_login_if_signup_is_off()
     {
         $this->setting('allow_sign_up', false);
@@ -110,7 +113,7 @@ class PrivateFacadeTest extends TestCase
         $this->assertEquals('http://localhost/login', $response->getHeader('Location')[0]);
     }
 
-    /** @test */
+    #[Test]
     public function guests_not_force_redirected_in_user_excluded_routes()
     {
         $this->setting('sycho-private-facade.route_exclusions', 'default');
@@ -122,7 +125,7 @@ class PrivateFacadeTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
     }
 
-    /** @test */
+    #[Test]
     public function guests_not_force_redirected_in_user_excluded_urls()
     {
         $this->setting('sycho-private-facade.url_exclusions', '/d/3');
@@ -134,7 +137,7 @@ class PrivateFacadeTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
     }
 
-    /** @test */
+    #[Test]
     public function guests_not_force_redirected_in_user_excluded_urls_wildcard()
     {
         $this->setting('sycho-private-facade.url_exclusions', '/d/3*');
@@ -146,7 +149,7 @@ class PrivateFacadeTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
     }
 
-    /** @test */
+    #[Test]
     public function guests_not_force_redirected_by_choice()
     {
         $this->setting('sycho-private-facade.force_redirect', false);
@@ -158,7 +161,7 @@ class PrivateFacadeTest extends TestCase
         $this->assertEquals(200, $response->getStatusCode());
     }
 
-    /** @test */
+    #[Test]
     public function users_cant_access_private_facade()
     {
         $postLoginResponse = $this->send(
