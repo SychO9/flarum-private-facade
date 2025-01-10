@@ -2,16 +2,19 @@
     "name": "sycho/flarum-private-facade",
     "description": "Force guests to an interface with only login and signup forms.",
     "keywords": [
-        "flarum", "private", "login", "signup", "page"
+        "flarum",
+        "private",
+        "login",
+        "signup",
+        "page"
     ],
     "type": "flarum-extension",
     "license": "MIT",
     "require": {
-        "flarum/core": "^1.2.0"
+        "flarum/core": "^2.0.0-beta"
     },
     "require-dev": {
-        "flarum/testing": "^1.0.0",
-        "symfony/var-dumper": "*"
+        "flarum/testing": "^2.0.0-beta"
     },
     "authors": [
         {
